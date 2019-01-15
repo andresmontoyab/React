@@ -1,6 +1,10 @@
 ﻿# React Course Information
 
-## Node Js
+### Index
+
+* [NodeJS](#nodejs)
+
+### NodeJs
 
 Node js let us run application witout I/O blocking issues, also we need Nodejs to download lib using the npm tool.
 
@@ -39,6 +43,20 @@ If the instalation doesnt work with the above command, please use the follow com
 
 	1. npm -g create-react-app
 	2. create-react-app name-app
+
+After the project is create, we must follow the next steps.
+
+	1. cd name-app/
+	2. yarn start or npm start
+
+## Arrow Function
+
+Always anonymus also cant be used like constructor.
+
+	const mi_function = () => {
+			boddy
+	};
+
 
 
 
