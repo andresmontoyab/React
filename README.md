@@ -35,7 +35,7 @@ Use Npm to install, share, and distribute code; manage dependencies in your proj
 
 # React
 
-### Why React
+### Why
 
 * Big Ecosystem -> Have thousands of lib that use react features , let us do almost everything that we want.
 
@@ -43,7 +43,7 @@ Use Npm to install, share, and distribute code; manage dependencies in your proj
 
 * Performance -> Fast load charge(Renderizacion using the Virtual DOM).
 
-### Create app
+### CreateApp
 
 
 * npx create-react-app name_app // npx -> install external package
@@ -58,7 +58,7 @@ After the project is create, we must follow the next steps.
 * cd name-app/
 * yarn start or npm start
 
-### Arrow Function
+### ArrowFunction
 
 Always anonymus also cant be used like constructor.
 
