@@ -12,6 +12,7 @@
     * [Functional Component](#FunctionalComponent)
     * [Class Component](#ClassComponent)
     * [Which Use](#WhichUse)
+    * [Components and Props](#Props)
   * [Arrow Function](#ArrowFunction)
   
 
