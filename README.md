@@ -3,18 +3,25 @@
 ### Index
 
 * [NodeJS](#nodejs)
+* [Yarn](#yarn)
+* [Npm](#npm)
+* [React](#react)
+  * [Why React?](#why react)
+  * [Create App](#create app)
+  * [Arrow Function](#Arrow Function)
+  
 
 ### NodeJs
 
 Node js let us run application witout I/O blocking issues, also we need Nodejs to download lib using the npm tool.
 
-	1.Download in NodeJs page the LTS version.
+	* Download in NodeJs page the LTS version.
 
-	2. Install NodeJs and Npm (Follow the instruction in the page.)
+	* Install NodeJs and Npm (Follow the instruction in the page.)
 
-	3. In the cli(Command Line), write node -v  
+	* In the cli(Command Line), write node -v  
 
-## Yarn
+### Yarn
 
 	1. Download the Yarn
 
@@ -22,11 +29,13 @@ Node js let us run application witout I/O blocking issues, also we need Nodejs t
 
 	3. Write yarn -v to check if everything is installed.
 
-## Npm
+### Npm
 
 Use Npm to install, share, and distribute code; manage dependencies in your projects.
 
-## Why React
+# React
+
+### Why React
 
 	1. Big Ecosystem -> Have thousands of lib that use react features , let us do almost everything that we want.
 
@@ -34,7 +43,7 @@ Use Npm to install, share, and distribute code; manage dependencies in your proj
 
 	3. Performance -> Fast load charge(Renderizacion using the Virtual DOM).
 
-## Create app
+### Create app
 
 
 	1.npx create-react-app name_app // npx -> install external package
@@ -49,7 +58,7 @@ After the project is create, we must follow the next steps.
 	1. cd name-app/
 	2. yarn start or npm start
 
-## Arrow Function
+### Arrow Function
 
 Always anonymus also cant be used like constructor.
 
