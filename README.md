@@ -13,7 +13,10 @@
     * [Class Component](#ClassComponent)
     * [Which Use](#WhichUse)
     * [Components and Props](#Props)
+* [JavaScript Basic](#javascript)
   * [Arrow Function](#ArrowFunction)
+  * [Destructiring](#Destructuring)
+  * [String Template](#StringTemplate)
   
 
 ### NodeJs
@@ -120,7 +123,7 @@ The main difference between this two approach is that functional are stateless a
 
 1. https://medium.com/the-andela-way/understanding-react-components-37f841c1f3bb
 
-## Basic
+# JavaScrip
 
 ### ArrowFunction
 
@@ -131,6 +134,74 @@ Always anonymus also cant be used like constructor.
 	};
 
 
+### Destructuring
+
+* Is a strategy that let us to asign value to variables from complex objects or arrays with some elemts, using the technique "Object pattern".
+
+	const obj = { name: 'Emiliano', nick: 'Oke'};
+	const {name: myName, nick: myNick} = obj;
+
+	// myName -> Emiliano.
+	// myNick -> Oke.
+
+	When the both structure are the same you just can do.
+
+	const {name, nick} = obj;
+
+	// name -> Emiliano
+	// Nick -> Oke
+
+* When use it destructuring is not require to use all the variables.
+
+	const source = {x: 7, y: 3 };
+	const {x} = source;
+
+	// x -> 7
+	// y ->  Uncaught ReferenceError 
+
+* The destructing can have default values in the props.
+
+	const {x, y = 1} = {};
+
+	// x -> undefined
+	// y -> 1
+
+
+## Destructuring Arrays
+
+	const myArray = ['a', 'b']
+	const [x,y] = myArray;
+
+	// x -> a
+	// y -> b
+
+* Also you can use it with keywords let and var.
+
+* In Destructing with array you can use "elision" is a way to omit one o more elements  between some array positions. For example if we dont want to use some elements.
+
+	const [,, x, y] = ['a','b','c','d'];
+
+	//	x -> c
+	//  y -> d
+
+* You can use the "rest operator" with the destructuring in order to extract the elements that remains.
+
+	const [x, ...y] = ['a', 'b', 'c'];
+
+	// x -> a
+	// y -> [b,c]
+
+### StringTemplate     
+
+* ES6 Template Strings (available in Chrome 41+), fundamentally change that. They introduce a way to define strings with domain-specific languages (DSLs), bringing better:
+   * String interpolation
+   * Embedded expressions
+   * Multiline strings without hacks
+   * String formatting
+   * String tagging for safe HTML escaping, localization and more.
+
+        var name = "Brendan";
+        console.log(`Yo, ${name}!`);
 
 
 
