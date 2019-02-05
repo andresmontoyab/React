@@ -283,21 +283,21 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 
 * Types of PropTypes.
 
-    1. optionalArray: PropTypes.array,
-    2. optionalBool: PropTypes.bool,
-    3. optionalFunc: PropTypes.func,
-    4. optionalNumber: PropTypes.number,
-    5. optionalObject: PropTypes.object,
-    6. optionalString: PropTypes.string,
-    7. optionalSymbol: PropTypes.symbol
+        1. optionalArray: PropTypes.array,
+        2. optionalBool: PropTypes.bool,
+        3. optionalFunc: PropTypes.func,
+        4. optionalNumber: PropTypes.number,
+        5. optionalObject: PropTypes.object,
+        6. optionalString: PropTypes.string,
+        7. optionalSymbol: PropTypes.symbol
 
 * Anythin that can be rendered: number,string etc
 
-    1. optionalNode: PropTypes.node,
+        1. optionalNode: PropTypes.node,
 
 * A React Element
 
-    1. optionalElement: PropTypes.element
+        1. optionalElement: PropTypes.element
 
 # CSS
 
@@ -305,24 +305,24 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 
 * If we want to use css files in react first we must to import the .css in our JS file.
 
-    1. Create a styles.css file
-    2. Import the styles.css file 
-        import './styles.css';
+        1. Create a styles.css file
+        2. Import the styles.css file 
+            import './styles.css';
 
 * className -> is a functionality in which express that a element will match in a respective css configuration.
 
-    1. In Js File
+        1. In Js File
 
-        <div className="weatherDataCont" >
-            <WeatherTemperature temperature={30} weatherState={RAIN}/>
-            <WeatherExtraInfo humidity={10} wind={"10 m/s"}/>
-        </div>
+            <div className="weatherDataCont" >
+                <WeatherTemperature temperature={30} weatherState={RAIN}/>
+                <WeatherExtraInfo humidity={10} wind={"10 m/s"}/>
+            </div>
 
-    2. In Css File.
+        2. In Css File.
 
-        .weatherDataCont {
-        background-color: red;
-        }      
+            .weatherDataCont {
+            background-color: red;
+            }      
 
 
 # Extensions
