@@ -13,10 +13,14 @@
     * [Class Component](#ClassComponent)
     * [Which Use](#WhichUse)
     * [Components and Props](#Props)
+  * [Constants](#Constants)
 * [JavaScript Basic](#javascript)
   * [Arrow Function](#ArrowFunction)
   * [Destructiring](#Destructuring)
   * [String Template](#StringTemplate)
+  * [Prop Types](#PropTypes)
+* [CSS Basic](#CSS)
+* [Usefull Extension](#Extensions)
   
 
 ### NodeJs
@@ -123,6 +127,37 @@ The main difference between this two approach is that functional are stateless a
 
 1. https://medium.com/the-andela-way/understanding-react-components-37f841c1f3bb
 
+## Constants
+
+The use of constante in JS helps to increase the consistency of the naming in the programs.
+
+To create constantes in JS you must follow the next steps.
+
+* Create a JS file in which you wil define the constant that you need(for this example is the weather.js file).
+
+        export const CLOUD = "cloud";
+        export const CLOUDY = "cloudy";
+        export const SUN = "sun";
+        export const RAIN = "rain";
+        export const SNOW = "snow";
+        export const WINDY = "windy";
+
+* Import those constante in the file that you need it.
+
+        import {
+            CLOUD ,
+            CLOUDY,
+            SUN,  
+            RAIN, 
+            SNOW, 
+            WINDY, 
+        } from './../constants/weather';
+
+* Use the constante in the file.
+
+        <WeatherTemperature temperature={20} weatherState={RAIN}/>
+
+
 # JavaScrip
 
 ### ArrowFunction
@@ -202,6 +237,103 @@ Always anonymus also cant be used like constructor.
 
         var name = "Brendan";
         console.log(`Yo, ${name}!`);
+
+### PropTypes
+
+Because JS is not a Type Languague so is most likely that a error happens because the type of the parameter isn't the require it. So for this reason we need to use a tool called PropTypes to verify the type of the parameters.
+
+* First we must install the prop types.
+
+        1. yarn add prop-types.
+        2. npm install prop-types.
+
+* Also we have to import in our files the package proptypes.
+
+        import PropTypes from 'prop-types';
+
+* After that we can use the prop-types features.
+
+        const WeatherTemperature = ({temperature, weatherState}) => (
+            <div>
+                {
+                    getWeatherIcon(weatherState)
+                }
+                <span>{temperature}</span>
+            </div>
+        );
+
+* For the next code we are setting up that the parameter for the componetn WeatherTemperature must be number and also String.
+
+        WeatherTemperature.propTypes = {
+        temperature: PropTypes.number,
+        weatherState: PropTypes.string
+}
+
+* There is another scenario in which i dont send any argument to the weatherTemperature componente, if i need that the field is not empty i could set upt the component field as require.
+
+        WeatherTemperature.propTypes = {
+            temperature: PropTypes.number.isRequired,
+            weatherState: PropTypes.string.isRequired
+        }
+
+* If you have installed ReactJS Code Snippet there are some shortcut available for the propTypes.
+
+        ptsr = Prop Type String Required.
+        ptnr = Prop Type Number Required
+
+* Types of PropTypes.
+
+    1. optionalArray: PropTypes.array,
+    2. optionalBool: PropTypes.bool,
+    3. optionalFunc: PropTypes.func,
+    4. optionalNumber: PropTypes.number,
+    5. optionalObject: PropTypes.object,
+    6. optionalString: PropTypes.string,
+    7. optionalSymbol: PropTypes.symbol
+
+* Anythin that can be rendered: number,string etc
+
+    1. optionalNode: PropTypes.node,
+
+* A React Element
+
+    1. optionalElement: PropTypes.element
+
+# CSS
+
+* Is a languague that describe how to visualize the html, The css files help us to give to the component shape, color, size, border and different UX features.
+
+* If we want to use css files in react first we must to import the .css in our JS file.
+
+    1. Create a styles.css file
+    2. Import the styles.css file 
+        import './styles.css';
+
+* className -> is a functionality in which express that a element will match in a respective css configuration.
+
+    1. In Js File
+
+        <div className="weatherDataCont" >
+            <WeatherTemperature temperature={30} weatherState={RAIN}/>
+            <WeatherExtraInfo humidity={10} wind={"10 m/s"}/>
+        </div>
+
+    2. In Css File.
+
+        .weatherDataCont {
+        background-color: red;
+        }      
+
+
+# Extensions
+
+1. ReactJs Code Snippet.
+
+
+        
+
+
+
 
 
 
