@@ -20,6 +20,8 @@
   * [Destructiring](#Destructuring)
   * [String Template](#StringTemplate)
   * [Prop Types](#PropTypes)
+  * [Http Calls](#Using-HTTP-Calls)
+  * [Promises](#Promises)
 * [CSS Basic](#CSS)
   * [CSS Commom Properties](#CSS-Common-Properties)
 * [Usefull Extension](#Extensions)
@@ -251,7 +253,7 @@ To create constantes in JS you must follow the next steps.
         <WeatherTemperature temperature={20} weatherState={RAIN}/>
 
 
-# JavaScrip
+# JavaScript
 
 ### Arrow Function
 
@@ -413,6 +415,29 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 * A React Element
 
         1. optionalElement: PropTypes.element
+
+## Using HTTP Calls
+
+### Fetch
+
+* Fetch is a native function of JS that let us to call one API and retrieve information. To use this feature follow the next examples.
+
+                const api = "endpoint.of.the.api.com";
+                fetch(api);
+
+## Promises
+
+* A promises is an object that is used in async request and represent a value that could be available "now", in the "future" or "never". Also a promises could have the next status.
+
+1. Pending -> Inicial Status is not fullfil or rejected.
+
+2. Fullfill -> The operation was sucessfull.
+
+3. Rejected -> The operation fails
+
+Promises-Flow:
+
+![](https://github.com/andresmontoyab/BasicReactJs/resources/promisesFlow.png) 
 
 # CSS
 
