@@ -13,6 +13,7 @@
     * [Class Component](#ClassComponent)
     * [Which Use](#Which-Use)
     * [Components and Props](#Props)
+  * [React State](#React-State)
   * [Constants](#Constants)
 * [JavaScript Basic](#javascript)
   * [Arrow Function](#Arrow-Function)
@@ -166,6 +167,58 @@ A better way of use the props and the component is passing all the component inf
 ### Links
 
 1. https://medium.com/the-andela-way/understanding-react-components-37f841c1f3bb
+
+
+## React-State
+
+* The State in react is one the most important concepts that we must to have, this status is always created and have all the information related with the component. This state is always created in the constructor.
+
+
+                const data = {
+                temperature: 5,
+                weatherState: SUN,
+                humidity: 10,
+                wind: '10 m/s',
+                }
+
+                class WeatherLocation extends Component {
+
+                constructor() {
+                        super();
+                        this.state = {
+                        city: 'Medellin',
+                        data: data
+                        };
+                }
+                }
+
+In the above code we are creating a component with the required information.
+
+* How to update the State?. If you want to update the React - state you have to use the setState() method.
+
+                const data2 = {
+                temperature: 15,
+                weatherState: WINDY,
+                humidity: 22,
+                wind: '12 m/s',
+                }
+
+                handleUpdateClick = () => {
+                        console.log("Updated.!!")
+                        this.setState({
+                        city: 'Medellin!!',
+                        data: data2,        
+                        });
+                }
+
+The handleUpdateClick could be in a event handler method. 
+
+## LifeCycle Component
+
+1. Constructor.
+2. Estado Inicial Status -> Render.
+3. OnClick Event
+4. Update the State with setState() and the component Render again.
 
 ## Constants
 
