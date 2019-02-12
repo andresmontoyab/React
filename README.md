@@ -437,7 +437,7 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 
 Promises-Flow:
 
-![](https://github.com/andresmontoyab/BasicReactJs/resources/promisesFlow.png) 
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/promisesFlow.PNG) 
 
 # CSS
 
