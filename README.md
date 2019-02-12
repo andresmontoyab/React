@@ -11,15 +11,16 @@
   * [Components](#components)
     * [Functional Component](#FunctionalComponent)
     * [Class Component](#ClassComponent)
-    * [Which Use](#WhichUse)
+    * [Which Use](#Which-Use)
     * [Components and Props](#Props)
   * [Constants](#Constants)
 * [JavaScript Basic](#javascript)
-  * [Arrow Function](#ArrowFunction)
+  * [Arrow Function](#Arrow-Function)
   * [Destructiring](#Destructuring)
   * [String Template](#StringTemplate)
   * [Prop Types](#PropTypes)
 * [CSS Basic](#CSS)
+  * [CSS Commom Properties](#CSS-Common-Properties)
 * [Usefull Extension](#Extensions)
   
 
@@ -92,7 +93,11 @@ After the project is create, we must follow the next steps.
 
 The main difference between this two approach is that functional are stateless and Class are statefull components.
 
-### WhichUse
+We also must to use class component when we need to use the life cycle status provided by React.
+
+### 
+
+### Which Use
 
 * Use a Class Componetn if you need to manage local state, add lifecycle methods to your component or add logic for events handlers, Otherwise use functional component.
 
@@ -123,6 +128,41 @@ The main difference between this two approach is that functional are stateless a
                 document.getElementById('root')
             );
 
+### Passing Destructuring between components
+
+A better way of use the props and the component is passing all the component information that will change into a props property, for this we can pass this information using destructing + props.
+
+        1. Define the Data that you need to pass.
+
+                const data = {
+                temperature: 5,
+                weatherState: SUN,
+                humidity: 10,
+                wind: '10 m/s',
+                }
+
+        2.  Put the data as a parameter in the component.
+
+                <WeatherData data={data}></WeatherData>
+
+        3. Update the component to use the parameters.
+
+                const weatherData = ({ data }) => {
+                const { temperature, weatherState, humidity, wind } = data;
+                return (<div className="weatherDataCont" >
+                        <WeatherTemperature temperature={temperature} weatherState={weatherState}/>
+                        <WeatherExtraInfo humidity={humidity} wind={wind}/>
+                </div>);
+                };
+
+        3.1 There is another way (destructing feature) to do the same.
+
+                const weatherData = ({ data : { temperature, weatherState, humidity, wind } }) => {
+                return (<div className="weatherDataCont" >
+                        <WeatherTemperature temperature={temperature} weatherState={weatherState}/>
+                        <WeatherExtraInfo humidity={humidity} wind={wind}/>
+                </div>);
+                };
 ### Links
 
 1. https://medium.com/the-andela-way/understanding-react-components-37f841c1f3bb
@@ -160,7 +200,7 @@ To create constantes in JS you must follow the next steps.
 
 # JavaScrip
 
-### ArrowFunction
+### Arrow Function
 
 Always anonymus also cant be used like constructor.
 
@@ -281,6 +321,28 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
         ptsr = Prop Type String Required.
         ptnr = Prop Type Number Required
 
+* For more complex object you can use prop types to validate the complete structure.
+
+        1. For example if the waitted structures is the next.
+
+                const data = {
+                temperature: 5,
+                weatherState: SUN,
+                humidity: 10,
+                wind: '10 m/s',
+                }
+
+        2. You could validate it in the next way.
+
+                weatherData.propTypes = {
+                data: PropTypes.shape({
+                        temperature: PropTypes.number.isRequired,
+                        weatherState: PropTypes.string.isRequired,
+                        humidity: PropTypes.number.isRequired,
+                        window: PropTypes.string.isRequired
+                })
+                }
+
 * Types of PropTypes.
 
         1. optionalArray: PropTypes.array,
@@ -322,7 +384,14 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 
             .weatherDataCont {
             background-color: red;
-            }      
+            }
+
+## CSS Common Properties      
+
+        1. widht -> width = "400px"  or width = 40%
+
+        2. height 
+        
 
 
 # Extensions
