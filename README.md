@@ -435,9 +435,26 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 
 3. Rejected -> The operation fails
 
-Promises-Flow:
+### Promises-Flow:
+
+* In the next image you will find the posible scenarios when we are dealing with a promises.
 
 ![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/promisesFlow.PNG) 
+
+### Define Promise
+
+                let promise = new Promise((resolve, rejected ) => {
+                        setTimeout(() => {
+                                resolve("Works")
+                        }, 2000);
+                });
+
+                console.log("The Promise Begins");
+                promise.then((message) => {
+                        console.log(message);
+                });
+
+
 
 # CSS
 

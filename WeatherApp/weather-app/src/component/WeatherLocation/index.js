@@ -42,7 +42,7 @@ class WeatherLocation extends Component {
 
     handleUpdateClick = () => {
         console.log("Updated.!!")
-        fetch(api_weather);
+        //fetch(api_weather);
         this.setState({
             city: 'Medellin!!',
             data: data2,        
