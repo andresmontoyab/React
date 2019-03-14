@@ -425,6 +425,16 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
                 const api = "endpoint.of.the.api.com";
                 fetch(api);
 
+* When we use a the fetch method the return is a promises,  that at the end is a response even if the answer is rejected or fullfill. In this new promises there are lot of usefull methods like .json to obtain the expected answer.
+
+                fetch(api)
+                .then(response => {
+                   return response.json();
+                })
+                .then(data => {
+                   console.log(JSON.stringify(data))
+                });
+
 ## Promises
 
 * A promises is an object that is used in async request and represent a value that could be available "now", in the "future" or "never". Also a promises could have the next status.
