@@ -13,6 +13,7 @@
     * [Class Component](#ClassComponent)
     * [Which Use](#Which-Use)
     * [Components and Props](#Props)
+    * [Compenent LifeCycle](#Componente-LifeCycle)
   * [React State](#React-State)
   * [Constants](#Constants)
 * [JavaScript Basic](#javascript)
@@ -24,7 +25,9 @@
   * [Promises](#Promises)
 * [CSS Basic](#CSS)
   * [CSS Commom Properties](#CSS-Common-Properties)
+  * [Material UI](#Material-Ui)
 * [Usefull Extension](#Extensions)
+  * [ESLint](#ESLint)
   
 
 ### NodeJs
@@ -169,6 +172,38 @@ A better way of use the props and the component is passing all the component inf
 ### Links
 
 1. https://medium.com/the-andela-way/understanding-react-components-37f841c1f3bb
+
+## Componente LifeCycle
+
+When we are dealing with React Component we must know about the component lifecycle.
+
+### Constructor
+
+When we create a componente the "constructor" is the first component's state.
+
+### Component Will Mount
+
+Jus before when a componente will be mount or render this state "component will mount" is executed.
+
+### Render
+
+Render is the component state in which we load all the component information.
+
+### Component Did Mount
+
+Component did mount is one of the most informatant states because in this state we can call or prepare the call to the server, because we already know that the component is up.
+
+### Component Will Update
+
+This state is executed just before the state of the component will be change.
+
+### Component Did Update
+
+This state is executed just after the state of the component is be change.
+
+The componente will update and will mount are deprecated so it very probable that in future versions dessapear.
+
+
 
 
 ## React-State
@@ -497,9 +532,23 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 
         2. height 
         
+## Material-Ui
 
+* Installation
+
+1. npm install @material-ui/core
+
+2. Add in the index.html file the next ref.
+
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 
 # Extensions
+
+## ESLint
+
+* ESLint is a static code analyzer that is always checking the quality of the code that we are writing.
+
+## Other Extension
 
 1. ReactJs Code Snippet.
 
