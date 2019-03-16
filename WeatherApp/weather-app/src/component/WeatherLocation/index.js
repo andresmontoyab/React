@@ -18,16 +18,14 @@ class WeatherLocation extends Component {
           city,
           data: null
         };
-        console.log("In constructor");
     }
 
     componentDidMount(){
-        console.log("In Component did mount");
         this.handleUpdateClick();
+        console.log(this.state);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("In Component did Update");
     }
 
     handleUpdateClick = () => {
@@ -43,10 +41,10 @@ class WeatherLocation extends Component {
     }
 
     render() {
+        const { onWeatherLocationClick } = this.props;
         const { city, data } = this.state;
-        console.log("Render");
         return (
-            <div className = "weatherLocationCont">
+            <div className = "weatherLocationCont" onClick={onWeatherLocationClick}>
                 <Location city={city}></Location>
                 {data ? <WeatherData data={data}></WeatherData> : 
                 <CircularProgress size={50}/>
@@ -58,6 +56,7 @@ class WeatherLocation extends Component {
 
 WeatherLocation.propTypes = {
     city: PropTypes.string.isRequired,
+    onWeatherLocationClick: PropTypes.funct,
 }
 
 export default WeatherLocation;

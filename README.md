@@ -26,6 +26,7 @@
 * [CSS Basic](#CSS)
   * [CSS Commom Properties](#CSS-Common-Properties)
   * [Material UI](#Material-Ui)
+  * [Responsive Design](#Responsive-Design)
 * [Usefull Extension](#Extensions)
   * [ESLint](#ESLint)
   
@@ -541,6 +542,68 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 2. Add in the index.html file the next ref.
 
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+
+* Features
+
+1. AppBar.
+2. Toolbar
+3. Typography
+
+## Responsive Design      
+
+* Media Queries
+
+With the help of viewport and media queries we can identified the different types of views and depend of each view we can change the style of the application.
+
+* FlexBox
+
+Is a display type that let us order in a smart way the elements that are inside of the flebox containers . 
+
+* Bootstrap
+
+Bootsrap stablish a Grid with twelve positions in which the application could react in different ways and also bootstrap give us a lot of style for our components.
+
+* React-FlexBox-Grid
+
+* Is a responsive modifiers that enable different column sizes, offset, alignment and distribution.
+
+        <MuiThemeProvider>
+          <Grid fluid>
+            <Row>
+              <Col xs={12} sm={6} md={4}>
+                <div className='red'>Red</div>
+              </Col>
+              <Col xs={12} sm={6} md={4}>
+                <div className="green">Green</div>
+              </Col>
+              <Col xs={12} sm={6} md={4}>
+                <div className='blue'>Bue</div>
+              </Col>
+             </Row>
+           </Grid>
+        </MuiThemeProvider>
+
+* In the above exmple we are going to create three colums with flexible sizes, the tag md means medium, sm small and xs extra small, as you can notice that values and tags represent the space in which each colum will be fit in the application, for example in medium all of the columns have the value of 4, that means that the three colums fit together in equals parts, but in xs all have the size of 12, so that means that each colum is alone in one row.
+
+        <MuiThemeProvider>
+          <Grid fluid>
+            <Row>
+              <Col xs>
+                <div className='red'></div>
+              </Col>
+              <Col xs>
+                <div className="green"></div>
+              </Col>
+              <Col xs>
+                <div className='blue'></div>
+              </Col>
+            </Row>
+          </Grid>
+        </MuiThemeProvider>
+
+* The above example is very similar to the first one, but the only difference is that inthis example we dont put any specific value for each col, but because all the cols have the same type of size(xs) so they can share the space in equals parts, that means that each col have the 33% percentage of the screen and for this approach the col can not use another rowm, this is called "autosized"
+
+* The fluid in the Grid tag it is a feature that let us fit more suitable the components in the screen.
 
 # Extensions
 
