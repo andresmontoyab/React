@@ -15,17 +15,12 @@ const cities = [
   'Lima,pe',
 ];
 
-const cities2 = [
-  'Buenos Aires,ar',
-  'Bogota,col',
-];
-
 class App extends Component {
 
   constructor() {
     super();
     this.state = { 
-      city: 'Nueva Ciudad',
+      city: null,
       cities
     }
   }
@@ -33,7 +28,7 @@ class App extends Component {
     console.log(`handleSelectionLocation ${city} `);
     this.setState({
       city,
-      cities: cities2})
+    })
   }
   render() {
     const { city } = this.state; 
@@ -57,9 +52,13 @@ class App extends Component {
           </div>
         </Col>
         <Col xs={12} md={6}>
-          <Paper elevation={4}>
-            <div className="details">
-              <ForecastExtended city={city}></ForecastExtended>
+          <Paper zDepth={4}>
+            <div className="detail">
+              {
+                city ? 
+                <ForecastExtended city={city}></ForecastExtended> :
+                <h1> No se selecciono ciudad</h1>
+              }
             </div>
           </Paper>
         </Col>

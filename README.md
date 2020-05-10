@@ -14,6 +14,19 @@
     * [Which Use](#Which-Use)
     * [Components and Props](#Props)
     * [Compenent LifeCycle](#Componente-LifeCycle)
+        * [Mounting](#Mounting)
+                * [Constructor](#constructor-mounting)
+                * [GetDerivedStateFromProps](#getDerivedStateFromProps-mounting)
+                * [Render](#render-mounting)
+                * [ComponentDidMount](#componentDidMount-mounting)
+        * [Updating](#Updating)
+                * [GetDerivedStateFromProps](#getDerivedStateFromProps-updating)
+                * [ShouldComponentUpdate](#shouldComponentUpdate-updating)
+                * [Render](#render-updating)
+                * [GetSnapshotBeforeUpdate](#getSnapshotBeforeUpdate-updating)
+                * [ComponentDidUpdate](#componentDidUpdate-updating)
+        * [Unmounting](#Unmounting)
+                * [ComponentWillUnmount](#componentWillUnmount-unmounting)
   * [React State](#React-State)
   * [Constants](#Constants)
 * [JavaScript Basic](#javascript)
@@ -174,61 +187,193 @@ A better way of use the props and the component is passing all the component inf
 
 1. https://medium.com/the-andela-way/understanding-react-components-37f841c1f3bb
 
-## Componente LifeCycle
+# Componente LifeCycle
 
-When we are dealing with React Component we must know about the component lifecycle.
+In order to understand how it works the life cycles component in react, we first must understand what are the phases three of the that react has.
 
-### Constructor
+## Mounting
 
-When we create a componente the "constructor" is the first component's state.
+Mounting means putting elements into the DOM.
 
-### Component Will Mount
+The methods that get called in the mounting phase are the next ones:
 
-Jus before when a componente will be mount or render this state "component will mount" is executed.
+1. constructor()
+2. getDerivedStateFromProps()
+3. render()
+4. componentDidMount()
 
-### Render
+The render() method is required and will always be called, the others are optional and will be called if you define them.
 
-Render is the component state in which we load all the component information.
+### constructor-mounting
 
-### Component Did Mount
+The constructor() method is called before anything else, when the component is initiated, and it is the natural place to set up the initial state and other initial values.
 
-Component did mount is one of the most informatant states because in this state we can call or prepare the call to the server, because we already know that the component is up.
+```JSX
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: "red"};
+  }
 
-### Component Will Update
+  ... render and other methods
+```
 
-This state is executed just before the state of the component will be change.
+### getDerivedStateFromProps-mounting
 
-### Component Did Update
+The getDerivedStateFromProps method is called right before the render method:
 
-This state is executed just after the state of the component is be change.
+```JSX
+ static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol };
+  }
+```
 
-The componente will update and will mount are deprecated so it very probable that in future versions dessapear.
+### render-mounting
 
+The render() method is required, and is the method that actual outputs HTML to the DOM.
 
+```JSX
+ render() {
+    return (
+      <h1>This is the content of the Header component</h1>
+    );
+  }
+```
 
+### componentDidMount-mounting
+
+The componentDidMount() method is called after the component is rendered.
+
+This is where you run statements that requires that the component is already placed in the DOM.
+
+```JSX
+ componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: "yellow"})
+    }, 1000)
+  }
+
+```
+
+### Updating
+
+React has five built-in methods that gets called, in this order, when a component is updated:
+
+1. getDerivedStateFromProps()
+2. shouldComponentUpdate()
+3. render()
+4. getSnapshotBeforeUpdate()
+5. componentDidUpdate()
+
+The render() method is required and will always be called, the others are optional and will be called if you define them.
+
+### getDerivedStateFromProps-updating
+
+Also at updates the getDerivedStateFromProps method is called. This is the first method that is called when a component gets updated.
+
+This will be a safer alternative to the previous lifecycle method componentWillReceiveProps().
+
+```JSX
+ static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol };
+  }
+```
+
+### shouldComponentUpdate-updating
+
+In the shouldComponentUpdate() method you can return a Boolean value that specifies whether React should continue with the rendering or not.
+
+The default value is true.
+
+```JSX
+  shouldComponentUpdate() {
+    return false;
+  }
+```
+
+### render-updating
+
+The render() method is of course called when a component gets updated, it has to re-render the HTML to the DOM, with the new changes.
+
+```JSX
+ render() {
+    return (
+      <div>
+      <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+      <button type="button" onClick={this.changeColor}>Change color</button>
+      </div>
+    );
+  }
+```  
+
+### getSnapshotBeforeUpdate-updating
+
+In the getSnapshotBeforeUpdate() method you have access to the props and state before the update, meaning that even after the update, you can check what the values were before the update.
+
+If the getSnapshotBeforeUpdate() method is present, you should also include the componentDidUpdate() method, otherwise you will get an error.
+
+```JSX
+ getSnapshotBeforeUpdate(prevProps, prevState) {
+    document.getElementById("div1").innerHTML =
+    "Before the update, the favorite was " + prevState.favoritecolor;
+  }
+  componentDidUpdate() {
+    document.getElementById("div2").innerHTML =
+    "The updated favorite is " + this.state.favoritecolor;
+  }
+```  
+
+### componentDidUpdate-updating 
+
+The componentDidUpdate method is called after the component is updated in the DOM.
+
+```JSX
+componentDidUpdate() {
+    document.getElementById("mydiv").innerHTML =
+    "The updated favorite is " + this.state.favoritecolor;
+  }
+```
+
+### Unmounting
+
+The next phase in the lifecycle is when a component is removed from the DOM, or unmounting as React likes to call it.
+
+React has only one built-in method that gets called when a component is unmounted:
+
+1. componentWillUnmount()
+
+### componentWillUnmount-unmounting
+
+```JSX
+ componentWillUnmount() {
+    alert("The component named Header is about to be unmounted.");
+  }
+```
 
 ## React-State
 
 * The State in react is one the most important concepts that we must to have, this status is always created and have all the information related with the component. This state is always created in the constructor.
 
+```JSX
+const data = {
+   temperature: 5,
+   weatherState: SUN,
+   humidity: 10,
+   wind: '10 m/s',
+}
 
-                const data = {
-                temperature: 5,
-                weatherState: SUN,
-                humidity: 10,
-                wind: '10 m/s',
-                }
+class WeatherLocation extends Component {
 
-                class WeatherLocation extends Component {
+constructor() {
+   super();
+   this.state = {
+   city: 'Medellin',
+   data: data
+      };
+   }
+}
+```
 
-                constructor() {
-                        super();
-                        this.state = {
-                        city: 'Medellin',
-                        data: data
-                        };
-                }
-                }
 
 In the above code we are creating a component with the required information.
 
