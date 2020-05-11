@@ -90,7 +90,7 @@ Usually update the DOM is a very expensive task, react improves the process of u
 
 Data flow within react always goes from the parents to the children, this kinda flow is usually called one way data flow, the parent components are going to pass the information to the children.
 
-![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/one-way-data-flow .PNG) 
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/one-way-data-flow.PNG) 
 
 
 ### Reconcilation
@@ -466,9 +466,43 @@ The state is unique and global in the entire application.
 
 The state is only modifies with actions.
 
+In order to setup redux we can follow the next steps:
+
+1. Install dependency
+
 ```console
 npm install --save redux
 ```
+
+2. Install Browser dependency
+
+In your browser search for redux devtools extendions
+
+3. Import redux in App.js
+
+```JSX
+import { createStore } from 'redux'; 
+```
+
+4. Create and setup store 
+
+```JSX
+const store = createStore(() => {}, 
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+```
+
+5. Send an action
+
+```JSX
+store.dispatch({type: 'setCity', value: city});
+```
+
+As you can see an action is just an object that has a type and value.
+
+With the previous steps you're going to be able to use Redux, in chrome browser you're going to see something like:
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-console.PNG) 
+
 
 # JavaScript
 
