@@ -7,7 +7,10 @@
 * [Npm](#npm)
 * [React](#react)
   * [Why React?](#why)
-  * [Create App](#createapp)
+        * [Virtual Dom](#Virtual-Dom)
+        * [Virtual Dom](#Virtual-Dom)
+        * [Reconcilation](#Reconcilation)
+        * [Create App](#createapp)
   * [Components](#components)
     * [Functional Component](#FunctionalComponent)
     * [Class Component](#ClassComponent)
@@ -15,20 +18,21 @@
     * [Components and Props](#Props)
     * [Compenent LifeCycle](#Componente-LifeCycle)
         * [Mounting](#Mounting)
-                * [Constructor](#constructor-mounting)
-                * [GetDerivedStateFromProps](#getDerivedStateFromProps-mounting)
-                * [Render](#render-mounting)
-                * [ComponentDidMount](#componentDidMount-mounting)
+           * [Constructor](#constructor-mounting)
+           * [GetDerivedStateFromProps](#getDerivedStateFromProps-mounting)
+           * [Render](#render-mounting)
+           * [ComponentDidMount](#componentDidMount-mounting)
         * [Updating](#Updating)
-                * [GetDerivedStateFromProps](#getDerivedStateFromProps-updating)
-                * [ShouldComponentUpdate](#shouldComponentUpdate-updating)
-                * [Render](#render-updating)
-                * [GetSnapshotBeforeUpdate](#getSnapshotBeforeUpdate-updating)
-                * [ComponentDidUpdate](#componentDidUpdate-updating)
+           * [GetDerivedStateFromProps](#getDerivedStateFromProps-updating)
+           * [ShouldComponentUpdate](#shouldComponentUpdate-updating)
+           * [Render](#render-updating)
+           * [GetSnapshotBeforeUpdate](#getSnapshotBeforeUpdate-updating)
+           * [ComponentDidUpdate](#componentDidUpdate-updating)
         * [Unmounting](#Unmounting)
-                * [ComponentWillUnmount](#componentWillUnmount-unmounting)
+            * [ComponentWillUnmount](#componentWillUnmount-unmounting)
   * [React State](#React-State)
   * [Constants](#Constants)
+* [Redux](#Redux)
 * [JavaScript Basic](#javascript)
   * [Arrow Function](#Arrow-Function)
   * [Destructiring](#Destructuring)
@@ -68,16 +72,32 @@ Use Npm to install, share, and distribute code; manage dependencies in your proj
 
 # React
 
-### Why
+## Why
 
 * Big Ecosystem -> Have thousands of lib that use react features , let us do almost everything that we want.
 
 * Stability and high Retrocompatibility -> The way of handle with the version let that all the application continue working without a break point.
 
+### Virtual Dom
+
+In every web page there is a structure that is the representation of all the object that the web page has, this is structure is called Domain object model or DOM, and every time this DOM changes that means a visual change in the screen.
+
+Usually update the DOM is a very expensive task, react improves the process of update the DOM with the help of something called Virtual Dom, that basically is a lighweigth representation of the real DOM in memory and every time that some changes is require, React compare the Virtual Dom with the real one and applied just the requried changes in order to avoid unrequire updates.
+
 * Performance -> Fast load charge(Renderizacion using the Virtual DOM).
 
-### CreateApp
+### One Way Data Flow
 
+Data flow within react always goes from the parents to the children, this kinda flow is usually called one way data flow, the parent components are going to pass the information to the children.
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/one-way-data-flow .PNG) 
+
+
+### Reconcilation
+
+Reconciliation is the process through which React updates the DOM. When a component's state changes, React has to calculate if it is necessary to update the DOM. It does this by creating a virtual DOM and comparing it with the current DOM
+
+### CreateApp
 
 * npx create-react-app name_app // npx -> install external package
 
@@ -190,6 +210,10 @@ A better way of use the props and the component is passing all the component inf
 # Componente LifeCycle
 
 In order to understand how it works the life cycles component in react, we first must understand what are the phases three of the that react has.
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/react-component-life-cycle.PNG) 
+
+In the previous image are all the phases and life cycles that exist in react
 
 ## Mounting
 
@@ -433,6 +457,18 @@ To create constantes in JS you must follow the next steps.
 
         <WeatherTemperature temperature={20} weatherState={RAIN}/>
 
+
+# Redux        
+
+Is a framework that deal with the state of an application, usually React and Redux works together.
+
+The state is unique and global in the entire application.
+
+The state is only modifies with actions.
+
+```console
+npm install --save redux
+```
 
 # JavaScript
 
