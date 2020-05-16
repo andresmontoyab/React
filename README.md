@@ -503,6 +503,49 @@ With the previous steps you're going to be able to use Redux, in chrome browser 
 
 ![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-console.PNG) 
 
+## Best Approach Store
+
+In the previous example we import the "store" in our components, 
+
+## Types of Components
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/dumb-and-smart-components-redux.jpg) 
+
+### Smart Components
+
+Containers, this one are component that has access to the state of the applications.
+
+### Dumb Components
+
+Presentational Components, this component only are able to draw information in the screen, but does not have access to the state of the applicaction.
+
+### Reducers
+
+Reducers basically is a function that is going to update the state of the application, usuaylly reducers are pure functions(Is an function that only dependes of the input, it does not depent of any information out of the function)
+
+
+### MiddleWares
+
+It is used to call rest apis as middleware
+
+npm install --save redux-thunk
+
+## Redux
+
+Redux is based in an architecture call Flux
+
+1. Dispatcher
+2. Store
+3. Action
+4. View
+
+The information in the store only can be modified with actions.
+
+The data flow is strictly uni-directional(There is no doble binding)
+
+Single Source of Thruth: SSOT 
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-flow.jpg) 
 
 # JavaScript
 

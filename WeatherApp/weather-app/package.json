@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.4",
+    "lodash.topairs": "^4.3.0",
     "moment": "^2.25.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

@@ -7,7 +7,6 @@ import ForecastExtended from './../component/ForecastExtended';
 class ForecastExtendedContainer extends Component {
     render() {
         const {city, forecastData } = this.props;
-        debugger
         return (
             this.props.city &&
             <ForecastExtended 

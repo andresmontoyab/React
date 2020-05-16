@@ -3,23 +3,23 @@ import WeatherLocation from './WeatherLocation'
 import PropTypes from 'prop-types';
 import './styles.css'
 
-const LocationList = ({cities, onSelectedLocation}) => {
-    const handlerWeatherLocationClick = city => {
-        console.log("HandlerWeatherLocationClick");
-        onSelectedLocation(city);
-    }
-    const strToComponents = (cities) => (
-        cities.map( (city) => 
-            (
-                <WeatherLocation 
-                    key={city} 
-                    city={city}
-                    onWeatherLocationClick={() => handlerWeatherLocationClick(city)}/>)
-    ));
-    return (<div className="locationList">
-        {strToComponents(cities)}
-    </div>);
+const strToComponents = (cities, onSelectedLocation) => {
+    debugger
+    return cities.map(city => 
+        <WeatherLocation 
+            key={city.key} 
+            city={city.name}
+            onWeatherLocationClick={() => onSelectedLocation(city.name)}
+            data={city.data}/>)
+
+    
 };
+
+const LocationList = ({cities, onSelectedLocation}) => (
+    <div className="locationList">
+        {strToComponents(cities, onSelectedLocation)}
+    </div>
+);
 
 LocationList.propTypes = {
     cities: PropTypes.array.isRequired,
