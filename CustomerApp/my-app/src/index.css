@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.app-frame {
+  margin: 5%;
+  padding: 30px;
+  width: calc(80vw);
+}
+
+.customers-actions {
+  background: #AAA;
+  padding: 10px;
+  margin: 10px;
+}
+
+.customers-actions buttom {
+  background: white;
+  min-width: 100px;
+  height: 30px;
+  margin: 5px;
+}
+
+.customers-list-item .field{
+  width: 160px;
+  margin: 1px;
+  padding: 4px;
+  background: #EEE;
+  display: inline-block;
+}

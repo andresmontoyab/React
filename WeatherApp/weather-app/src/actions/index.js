@@ -32,7 +32,6 @@ export const setWeather = payload => {
             fetch(getUrlWeatherByCity(city))
             .then(response => response.json())
             .then(data => {
-                debugger
                 const weather = transforWeather(data);    
                 dispatch(setWeatherCity({city, weather}))
             })

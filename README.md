@@ -503,6 +503,236 @@ With the previous steps you're going to be able to use Redux, in chrome browser 
 
 ![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-console.PNG) 
 
+## React Router
+
+Router
+        BrowserRouter   -> Let modify URL
+        HashRouter      -> Use the symbol # and url -> Is not recommendaded to use it
+        Memory Router   -> Is a router that does not use URL
+
+BrowserRouter
+        basename={optionString}         -> Route base
+        forceRefresh=(optionalBool)     -> Force to refresh to old browser
+        getUserConfrimation=(optionalFunc) -> Ask to the user one specific actions
+
+Route   -> Is the most importantn component when we are talking about navegations 
+
+Ways to invoke Router
+
+<Route path="/customers" Component={Customer}/>
+<Route path="/customers" Component={() => (<Customer/>)}/>
+<Route path="/customers" children=(({match, ...rest}) => (match ? <p>No</p>: <p>Si</p>))/>
+
+Router Parameters
+        exact   -> When the url does not match exactly when the url passed in path, is not going to execute the component
+        strict  -> If exist an las back slash at the end "/customer" <> "/customer/
+        match   -> match is use if we have wildcard in our url "/customers/:dni" where dni could be any kind of number
+
+<Switch>
+
+Is very use when routes that can be ambiguos, with swicht it always evaluate the first result that matches
+
+<Link> y <NavLink>
+
+The only difference between the two previous element is that with navLink we can customize a little bit.
+
+withRouter
+
+It is a highOrder component and adds the properties match, location and history to the component, also when this properties change re-render the component
+
+The elemnt history is mutable.
+
+push            -> Go to a direction
+replace
+go(n)           -> Go n pages back or forward 
+goBack()        -> Go to the previous page
+goForward()     -> Go to the next page
+block()         ->
+
+That library helps to redirect pages.
+
+npm install react-router-dom
+
+Import routers and link
+
+import { Link, BrowserRouter as Router } from 'react-router-dom'
+
+
+```JSX
+<Router>
+<div className="App">
+        <Link to="/customers">Customers</Link>
+</div>
+</Router>
+```
+
+Inside of router only must be one element (div)
+
+## Route
+
+Route is another tool that let us relate a specific path with a component
+
+```JSX
+class App extends Component {
+  renderDummy = () => <h1>Dummy</h1>;
+  renderCustomers = () => <h1>Customers</h1>;
+  renderCustomerWithDNI = () => <h1> This is a customer with DNI</h1>;
+  renderNewCustomer = () => <h1> This is a new customer </h1>;
+  render() {
+    return (
+      <Router>
+        <div>
+          <Route exact path="/" component={this.renderDummy}></Route>
+          <Route exact path="/customers" component={this.renderCustomers}></Route>
+          <Switch>
+            <Route exact path="/customers/new" component={this.renderNewCustomer}></Route>
+            <Route exact path="/customers/:dni" component={this.renderCustomerWithDNI}></Route>
+          </Switch>
+        </div>
+      </Router>
+    );
+  };
+}
+```
+
+The previous code is going to swicht between component in based in the url.
+
+It is important to highlight what are doing the Route, exact and Switch features.
+
+1. Route: Basically works to move among different components.
+2. exact: Only one Route could match the url, that means that only one component is going to be show
+3. Switch: Only one the components inside of the switch is going to be show, the application is going to choose the one that matches with the
+specification.
+
+## Use of history
+
+History let us move to another url, and store the previous url in a stack.
+
+```JSX
+ handleOnClick = () => {
+        console.log("handle on click");
+        this.props.history.push('/customers')                         
+}
+```
+
+In order to always have the history property inside our component we must use the withRouter feature from the react-router-dom.
+
+```JSX
+export default withRouter(HomeContainers);
+```
+
+## Redux
+
+Redux is based in an architecture call Flux
+
+1. Dispatcher
+2. Store
+3. Action
+4. View
+
+Steps to use Redux.
+
+1. Install
+
+npm install --save redux
+
+2. Create store
+
+```JSX
+import { createStore, compose } from 'redux';
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const reducers = state => state;
+export const store = createStore(reducers, {}, composeEnhancers());
+```
+
+2.1 Related app with provider.
+
+```JSX
+import { Provider } from 'react-redux';
+import { store } from './store/index';
+
+const rootComponent= (
+  <Provider store={store}>
+    <App/>
+  </Provider>
+)
+ReactDOM.render(rootComponent, document.getElementById('root'));
+```
+3. Create Action
+
+```JSX
+import { FETCH_CUSTOMERS} from './../constants/index';
+import { createAction } from 'redux-actions';
+
+export const fetchCustomers = createAction(FETCH_CUSTOMERS);
+```
+
+4. Use connect in our container component
+
+```JSX
+import {connect} from 'react-redux';
+
+// ... Component info
+const mapDispatchToProps = dispatch => (
+    {
+        fetchCustomer: () => dispatch(fetchCustomers())
+    }
+)
+
+export default withRouter(connect(null, mapDispatchToProps)(CustomerContainer));
+```
+
+5. Create reducer
+
+In order to create a setup a reducer we must follow some steps.
+
+
+Create the reducer.
+
+```JSX
+import { handleActions } from 'redux-actions';
+import { FETCH_CUSTOMERS } from '../constants';
+
+const customers = handleActions({
+    [FETCH_CUSTOMERS]: state => state
+});
+```
+
+Create an index file in where call the previous created reducer
+
+```JSX
+import { combineReducers } from 'redux';
+import { customers } from './customers';
+
+export default combineReducers({
+    customers
+})
+```
+
+Use the combineReducers in our store file
+
+```JSX
+import { createStore, compose } from 'redux';
+import { reducers } from '../reducers/index';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export const store = createStore(reducers, {}, composeEnhancers());
+```
+
+## Redux-promises
+
+npm install --save redux-promise
+
+
+The information in the store only can be modified with actions.
+
+The data flow is strictly uni-directional(There is no doble binding)
+
+Single Source of Thruth: SSOT 
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-flow.PNG) 
+
 ## Best Approach Store
 
 In the previous example we import the "store" in our components, 
@@ -529,23 +759,6 @@ Reducers basically is a function that is going to update the state of the applic
 It is used to call rest apis as middleware
 
 npm install --save redux-thunk
-
-## Redux
-
-Redux is based in an architecture call Flux
-
-1. Dispatcher
-2. Store
-3. Action
-4. View
-
-The information in the store only can be modified with actions.
-
-The data flow is strictly uni-directional(There is no doble binding)
-
-Single Source of Thruth: SSOT 
-
-![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-flow.jpg) 
 
 # JavaScript
 
