@@ -784,6 +784,153 @@ export default connect(
 
 2. Second Approach High Order Functions 
 
+Create a High Order Funcion
+
+```JSX
+import React, { Component } from "react";
+
+export const setPropsAsInitial = WrapperComponent => (
+    class extends Component {
+        render () {
+            return <WrapperComponent {...this.props} 
+                initialValues = {this.props} 
+                />
+        }
+    }
+);
+```
+
+and in our main componente use this high order function to pass the initial values
+
+```JSX
+// ... Component Creation
+const constumerEditForm = reduxForm({ form: 'CustomerEdit'}) (CustomerEdit);
+export default setPropsAsInitial(constumerEditForm);
+```
+
+## Form Validations
+
+When we want to validate specific fields in our forms, there are two approaches Field and Global validations, one important fact to keep in mind is that Field validation has higher priority than global validation
+
+### Field Validation
+
+In the field validation you just need to add in the validate prop in the Field tag
+
+```JSX
+// Imports
+const isRequired = value => (
+    !value && "Este campo es requerido"
+);
+
+const MyField = ({input, meta, type, label, name}) => (
+    <div>
+        <label htmlFor={name}>{label}</label>
+        <input {...input} type={!type ? "text" : type}/>
+        {
+            meta.touched && meta.error && <span>{meta.error}</span>
+        }
+    </div>
+);
+
+const CustomerEdit = ({ name, dni, age}) => {
+    return (
+        <div>
+            <h2>Edicion Client</h2>
+            <form action="">
+                <div>
+                <Field 
+                    name="name" 
+                    label="Nombre"
+                    component={MyField} 
+                    type="text"
+                    validate={isRequired}
+                    ></Field>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+const constumerEditForm = reduxForm({ form: 'CustomerEdit'}) (CustomerEdit);
+export default setPropsAsInitial(constumerEditForm);
+```
+
+### Global Validations
+
+In order to apply global validation we must follow the next steps:
+
+1. In the reduxForm function we have to add the validate.
+
+2. We need to create the validate function in where we are going to execute are validations
+
+```JSX
+// Imports
+const validate = values => {
+    const error = {};
+
+    if (!values.name) {
+        error.name = "El Campo nombre es requerido"
+    }
+
+    if (!values.dni) {
+        error.dni = "El Campo DNI es requerido"
+    }
+
+    return error;
+};
+
+const isNumber = value => (
+    isNaN(Number(value)) && "El Campo debe ser un numero"
+);
+
+const MyField = ({input, meta, type, label, name}) => (
+    <div>
+        <label htmlFor={name}>{label}</label>
+        <input {...input} type={!type ? "text" : type}/>
+        {
+            meta.touched && meta.error && <span>{meta.error}</span>
+        }
+    </div>
+);
+
+const CustomerEdit = ({ name, dni, age}) => {
+    return (
+        <div>
+            <h2>Edicion Client</h2>
+            <form action="">
+                <div>
+                <Field 
+                    name="name" 
+                    label="Nombre"
+                    component={MyField} 
+                    type="text"
+                    ></Field>
+                </div>
+                <div>
+                <Field 
+                    name="dni" 
+                    label="DNI"
+                    component={MyField} 
+                    type="text"
+                    validate={[isNumber,]}></Field>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+const constumerEditForm = reduxForm(
+    { 
+        form: 'CustomerEdit',
+        validate
+    }) (CustomerEdit);
+export default setPropsAsInitial(constumerEditForm);
+```
+
+
+## Submitting Form
+
+
 
 ## Redux-promises
 
