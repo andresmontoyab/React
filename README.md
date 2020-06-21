@@ -720,6 +720,71 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(reducers, {}, composeEnhancers());
 ```
 
+## Redux-Forms
+
+npm install --save redux-form
+
+1. In the index.js from our reducer put the next code
+
+```JSX
+import { reducer as reduxForm } from 'redux-form';
+
+export const reducers = combineReducers({
+    customers,
+    form: reduxForm
+})
+```
+
+2. In the component where we want to create our form add the next lines
+
+```JSX
+// Import dependency
+import { reduxFrom, Field } from 'redux-form';
+
+      <div>
+            <h2>Edicion Client</h2>
+            <form action="">
+                <div>
+                    <label htmlFor="name">Nombre</label>
+                    <Field name="name" component="input" type="text"></Field>
+                </div>
+                <div>
+                    <label htmlFor="dni">Dni</label>
+                    <Field name="dni" component="input" type="text"></Field>
+                </div>
+                <div>
+                    <label htmlFor="age">Edad</label>
+                    <Field name="age" component="input" type="number"></Field>
+                </div>
+            </form>
+        </div>
+
+// with the previous depedency wrapp the component
+export default reduxFrom({ form: 'CustomerEdit'}) (CustomerEdit); 
+```
+
+## Set Initial Values
+
+1. First Approach
+
+The first approach to set initial values is using the connect from react-redux in order to map the props of the componente, this approach works but have a little problem, because we are handling the state in this component this component is no longer a component it is a container.  
+
+```JSX
+CustomerEdit.propTypes = {
+    name: PropTypes.string,
+    dni: PropTypes.string,
+    age: PropTypes.number,
+
+};
+
+const constumerEditForm = reduxForm({ form: 'CustomerEdit'}) (CustomerEdit);
+export default connect( 
+    (state,props) => ({ initialValues: props}))(constumerEditForm);
+```
+
+2. Second Approach High Order Functions 
+
+
 ## Redux-promises
 
 npm install --save redux-promise
