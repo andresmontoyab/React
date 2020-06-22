@@ -8,6 +8,8 @@ import { withRouter} from 'react-router-dom'
 import { fetchCustomers } from '../actions/fetchCustomers'
 import { getCustomers } from '../selectors/customer';
 
+
+
 class CustomersContainer extends Component {
 
     componentDidMount() {

@@ -6,12 +6,21 @@ import { getCustomerByDni } from '../selectors/customer';
 import {Route, withRouter } from 'react-router-dom';
 import CustomerEdit from '../components/CustomerEdit';
 import CustomerData from '../components/CustomerData';
+import { fetchCustomers } from './../actions/fetchCustomers';
+import { updateCustomer } from './../actions/updateCustomer';
 
-//  body= {<p> Datos del cliente {this.props.customer.name}</p>}> </AppFrame>
 class CustomerContainer extends Component {
 
+    componentDidMount() {
+        if (!this.props.customer) {
+            this.props.fetchCustomers();
+        }
+    }
+
     handleSubmit = values =>  {
-        console.log(JSON.stringify(values));
+        console.log(JSON.stringify(values)); 
+        const { id }  = values;
+        this.props.updateCustomer(id, values);       
     }
 
     handleOnBack = () => {
@@ -44,11 +53,16 @@ class CustomerContainer extends Component {
 
 CustomerContainer.propTypes = {
     dni: PropTypes.string.isRequired,
-    customer: PropTypes.object.isRequired,
+    customer: PropTypes.object,
+    updateCustomer: PropTypes.func.isRequired,
+    fetchCustomers: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
     customer: getCustomerByDni(state, props.dni)
 })
 
-export default withRouter(connect(mapStateToProps,null)(CustomerContainer));
+export default withRouter(connect(mapStateToProps, {
+    fetchCustomers,
+    updateCustomer
+})(CustomerContainer));

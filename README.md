@@ -770,13 +770,6 @@ export default reduxFrom({ form: 'CustomerEdit'}) (CustomerEdit);
 The first approach to set initial values is using the connect from react-redux in order to map the props of the componente, this approach works but have a little problem, because we are handling the state in this component this component is no longer a component it is a container.  
 
 ```JSX
-CustomerEdit.propTypes = {
-    name: PropTypes.string,
-    dni: PropTypes.string,
-    age: PropTypes.number,
-
-};
-
 const constumerEditForm = reduxForm({ form: 'CustomerEdit'}) (CustomerEdit);
 export default connect( 
     (state,props) => ({ initialValues: props}))(constumerEditForm);
@@ -927,10 +920,52 @@ const constumerEditForm = reduxForm(
 export default setPropsAsInitial(constumerEditForm);
 ```
 
-
 ## Submitting Form
 
+In order to submit information in a form we need to follow the next steps.
 
+1. Create a <form>
+2. In the form tag add the onSubmit property.
+3. In the onSubmit property must be assigned the action that we want to apply
+4. Create a button with type submit.
+5. When this button is clicked the onSubmit action is going to be called
+
+```JSX
+// Imports
+
+const MyField = ({input, meta, type, label, name}) => (
+    <div>
+        <label htmlFor={name}>{label}</label>
+        <input {...input} type={!type ? "text" : type}/>
+        {
+            meta.touched && meta.error && <span>{meta.error}</span>
+        }
+    </div>
+);
+
+const CustomerEdit = ({ name, dni, age, handleSubmit, onBack}) => {
+    return (
+        <div>
+            <h2>Edicion Client</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                <Field 
+                    name="name" 
+                    label="Nombre"
+                    component={MyField} 
+                    type="text"
+                    ></Field>
+                </div>
+                <div>
+                <CustomerActions>
+                    <button type="submit" >Aceptar</button>
+                    <button onClick={onBack}>Cancelar</button>
+                </CustomerActions>
+            </form>
+        </div>
+    );
+};
+```
 
 ## Redux-promises
 
