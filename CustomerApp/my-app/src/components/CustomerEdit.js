@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
 import { reduxForm, Field, isSubmitting } from 'redux-form';
 import { setPropsAsInitial } from '../helpers/setPropsAsInitial';
 import CustomerActions from './CustomerActions';
+import { Prompt } from 'react-router-dom';
 
 const validate = values => {
     const error = {};
@@ -23,6 +23,8 @@ const isNumber = value => (
     isNaN(Number(value)) && "El Campo debe ser un numero"
 );
 
+const toNumber = value => value && Number(value);
+
 const MyField = ({input, meta, type, label, name}) => (
     <div>
         <label htmlFor={name}>{label}</label>
@@ -33,7 +35,7 @@ const MyField = ({input, meta, type, label, name}) => (
     </div>
 );
 
-const CustomerEdit = ({ name, dni, age, handleSubmit, onBack}) => {
+const CustomerEdit = ({ name, dni, age, handleSubmit, onBack, pristine, submitSucceeded, submitting}) => {
     return (
         <div>
             <h2>Edicion Client</h2>
@@ -60,12 +62,17 @@ const CustomerEdit = ({ name, dni, age, handleSubmit, onBack}) => {
                     label="Age"
                     component={MyField} 
                     type="number"
-                    validate={[isNumber,]}></Field>
+                    validate={[isNumber]}
+                    parse={toNumber}></Field>
                 </div>
                 <CustomerActions>
-                    <button type="submit" >Aceptar</button>
-                    <button onClick={onBack}>Cancelar</button>
+                    <button type="submit" disabled = {pristine || submitting}>Aceptar</button>
+                    <button type="button" disabled = {submitting} onClick={onBack}>Cancelar</button>
                 </CustomerActions>
+                <Prompt 
+                    when = {!pristine && !submitSucceeded}
+                    message= "Se Perderan los datos si continua">  
+                </Prompt>
             </form>
         </div>
     );
