@@ -1000,6 +1000,16 @@ Presentational Components, this component only are able to draw information in t
 
 Reducers basically is a function that is going to update the state of the application, usuaylly reducers are pure functions(Is an function that only dependes of the input, it does not depent of any information out of the function)
 
+## Hooks
+
+### useState
+
+Deal with the state of the component that means is very similar to the setState.
+
+### useEffect
+
+Lets hook to component cycle events like componentDidMount, componentDidUpdate and componentWillMount
+
 
 ### MiddleWares
 
