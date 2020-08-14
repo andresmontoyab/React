@@ -52,19 +52,15 @@
 
 Node js let us run application witout I/O blocking issues, also we need Nodejs to download lib using the npm tool.
 
-* Download in NodeJs page the LTS version.
-
-* Install NodeJs and Npm (Follow the instruction in the page.)
-
-* In the cli(Command Line), write node -v  
+- Download in NodeJs page the LTS version.
+- Install NodeJs and Npm (Follow the instruction in the page.)
+- In the cli(Command Line), write node -v  
 
 ### Yarn
 
-* Download the Yarn
-
-* Follow the installation steps .
-
-* Write yarn -v to check if everything is installed.
+- Download the Yarn
+- Follow the installation steps .
+- Write yarn -v to check if everything is installed.
 
 ### Npm
 
@@ -74,21 +70,24 @@ Use Npm to install, share, and distribute code; manage dependencies in your proj
 
 ## Why
 
-* Big Ecosystem -> Have thousands of lib that use react features , let us do almost everything that we want.
-
-* Stability and high Retrocompatibility -> The way of handle with the version let that all the application continue working without a break point.
+1. Big Ecosystem: Have thousands of lib that use react features , let us do almost everything that we want.
+2. Stability and high Retrocompatibility: The way of handle with the version let that all the application continue working without a break point.
+3. Performance: Fast load charge(Renderizacion using the Virtual DOM).
 
 ### Virtual Dom
 
-In every web page there is a structure that is the representation of all the object that the web page has, this is structure is called Domain object model or DOM, and every time this DOM changes that means a visual change in the screen.
+In every web page there is a structure that is the representation of all the object that the web page has, this structure is called Domain object Model or DOM, and every time the DOM changes means a visual change in the screen.
 
 Usually update the DOM is a very expensive task, react improves the process of update the DOM with the help of something called Virtual Dom, that basically is a lighweigth representation of the real DOM in memory and every time that some changes is require, React compare the Virtual Dom with the real one and applied just the requried changes in order to avoid unrequire updates.
-
-* Performance -> Fast load charge(Renderizacion using the Virtual DOM).
 
 ### One Way Data Flow
 
 Data flow within react always goes from the parents to the children, this kinda flow is usually called one way data flow, the parent components are going to pass the information to the children.
+
+<img 
+  src="https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/one-way-data-flow.PNG"
+  width="500px"
+  height="500px"/>
 
 ![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/one-way-data-flow.PNG) 
 
