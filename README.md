@@ -85,7 +85,7 @@ Usually update the DOM is a very expensive task, react improves the process of u
 Data flow within react always goes from the parents to the children, this kinda flow is usually called one way data flow, the parent components are going to pass the information to the children.
 
 <img 
-  style="margin:50px 50px;"
+  style="margin:50px 50px; box-sizing: border-box;"
   src="https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/one-way-data-flow.PNG"
   width="90%"
   height="90%"/>
