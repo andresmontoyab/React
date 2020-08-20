@@ -1,6 +1,6 @@
 ﻿# React Course Information
 
-### Index
+## Index
 
 * [NodeJS](#nodejs)
 * [Yarn](#yarn)
@@ -8,31 +8,34 @@
 * [React](#react)
   * [Why React?](#why)
      * [Virtual Dom](#Virtual-Dom)
-     * [Virtual Dom](#Virtual-Dom)
      * [Reconcilation](#Reconcilation)
-  * [Create App](#createapp)
+     * [Create App](#Create-App)
   * [Components](#components)
     * [Functional Component](#FunctionalComponent)
     * [Class Component](#ClassComponent)
     * [Which Use](#Which-Use)
-    * [Components and Props](#Props)
-    * [Compenent LifeCycle](#Componente-LifeCycle)
-        * [Mounting](#Mounting)
-           * [Constructor](#constructor-mounting)
-           * [GetDerivedStateFromProps](#getDerivedStateFromProps-mounting)
-           * [Render](#render-mounting)
-           * [ComponentDidMount](#componentDidMount-mounting)
-        * [Updating](#Updating)
-           * [GetDerivedStateFromProps](#getDerivedStateFromProps-updating)
-           * [ShouldComponentUpdate](#shouldComponentUpdate-updating)
-           * [Render](#render-updating)
-           * [GetSnapshotBeforeUpdate](#getSnapshotBeforeUpdate-updating)
-           * [ComponentDidUpdate](#componentDidUpdate-updating)
-        * [Unmounting](#Unmounting)
-            * [ComponentWillUnmount](#componentWillUnmount-unmounting)
+  * [Props](#Props)
   * [React State](#React-State)
-  * [Constants](#Constants)
+  * [Compenent LifeCycle](#Component-LifeCycle)
+      * [Mounting](#Mounting)
+          * [Constructor](#constructor-mounting)
+          * [GetDerivedStateFromProps](#getDerivedStateFromProps-mounting)
+          * [Render](#render-mounting)
+          * [ComponentDidMount](#componentDidMount-mounting)
+      * [Updating](#Updating)
+          * [GetDerivedStateFromProps](#getDerivedStateFromProps-updating)
+          * [ShouldComponentUpdate](#shouldComponentUpdate-updating)
+          * [Render](#render-updating)
+          * [GetSnapshotBeforeUpdate](#getSnapshotBeforeUpdate-updating)
+          * [ComponentDidUpdate](#componentDidUpdate-updating)
+      * [Unmounting](#Unmounting)
+          * [ComponentWillUnmount](#componentWillUnmount-unmounting)
+  * [React Router](#React-Router)
 * [Redux](#Redux)
+  ### First Steps Redux
+
+
+
 * [JavaScript Basic](#javascript)
   * [Arrow Function](#Arrow-Function)
   * [Destructiring](#Destructuring)
@@ -47,22 +50,29 @@
 * [Usefull Extension](#Extensions)
   * [ESLint](#ESLint)
   
+## NodeJs
 
-### NodeJs
-
-Node js let us run application witout I/O blocking issues, also we need Nodejs to download lib using the npm tool.
+Node js let us run application witout I/O blocking issues, also we need Nodejs to download libs using the npm tool.
 
 - Download in NodeJs page the LTS version.
 - Install NodeJs and Npm (Follow the instruction in the page.)
-- In the cli(Command Line), write node -v  
+- In the cli (Command Line), write:
 
-### Yarn
+```sh
+node -v  
+```
+
+## Yarn
 
 - Download the Yarn
 - Follow the installation steps .
-- Write yarn -v to check if everything is installed.
+- In the cli (Command Line), write:
 
-### Npm
+```sh
+ yarn -v  
+```
+
+## Npm
 
 Use Npm to install, share, and distribute code; manage dependencies in your projects.
 
@@ -71,7 +81,7 @@ Use Npm to install, share, and distribute code; manage dependencies in your proj
 ## Why
 
 1. Big Ecosystem: Have thousands of lib that use react features , let us do almost everything that we want.
-2. Stability and high Retrocompatibility: The way of handle with the version let that all the application continue working without a break point.
+2. Stability and high retrocompatibility: The way of handle with the version let that all the application continue working without a break point.
 3. Performance: Fast load charge(Renderizacion using the Virtual DOM).
 
 ### Virtual Dom
@@ -80,142 +90,196 @@ In every web page there is a structure that is the representation of all the obj
 
 Usually update the DOM is a very expensive task, react improves the process of update the DOM with the help of something called Virtual Dom, that basically is a lighweigth representation of the real DOM in memory and every time that some changes is require, React compare the Virtual Dom with the real one and applied just the requried changes in order to avoid unrequire updates.
 
+### Reconcilation
+
+Reconciliation is the process through which React updates the DOM. When a component's state changes, React has to calculate if it is necessary to update the DOM. It does this by creating a virtual DOM and comparing it with the current DOM
+
+### Create App
+
+In order to start using react js we should write the next command in the cli, please be sure that you already installed npm
+
+```sh
+npx create-react-app name_app  ##  npx -> install external package
+```
+
+If the above cmmand doesnt work , please use the follow commands.
+
+```sh
+npm -g create-react-app
+create-react-app name-app
+```
+
+After the project is create, we must follow the next steps.
+
+```sh
+cd name-app/
+yarn start  ## or npm start
+```
+
 ### One Way Data Flow
 
 Data flow within react always goes from the parents to the children, this kinda flow is usually called one way data flow, the parent components are going to pass the information to the children.
 
-<img 
+<img
   style="margin:50px 50px; box-sizing: border-box;"
   src="https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/one-way-data-flow.PNG"
   width="90%"
   height="90%"/>
 
-![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/one-way-data-flow.PNG) 
-
-
-### Reconcilation
-
-Reconciliation is the process through which React updates the DOM. When a component's state changes, React has to calculate if it is necessary to update the DOM. It does this by creating a virtual DOM and comparing it with the current DOM
-
-### CreateApp
-
-* npx create-react-app name_app // npx -> install external package
-
-If the instalation doesnt work with the above command, please use the follow commands.
-
-* npm -g create-react-app
-* create-react-app name-app
-
-After the project is create, we must follow the next steps.
-
-* cd name-app/
-* yarn start or npm start
 
 ## Components
 
-### FunctionalComponent
+Components are the building block of any React app and  a typical React app will have many of these.
+  - Functional Components
+  - Class Components 
 
-* Components are the building block of any React app and  a Typical REact app will have many of these.
+### Functional Component
 
-        const Greeting = () => <h1>Hello World today!</h1>;
+The main feature about functional components is that is stateless, as you can see in the functional component, there is no state, just a function, so if you dont need any state in your component and also you dont use the life cycle of react, choose this type.
 
-* The class component have some additional features such as the ability to contain logic(methods to handle onClick events), local state and other capabilities.
+```js
+const Greeting = () => <h1>Hello World today!</h1>;
+```
 
 ### ClassComponent
 
-* There is a different way to write components, so far we've written a functional component, a fitting name since it really was just a function. Components can also be written using ES6 classes instead of functions. Such Components are called class components.
+ The class component have some additional features such as the ability to contain logic(methods to handle onClick events), local state and other capabilities.
 
-        class Greeting extends React.Component {
-             render(){
-                return <h1>Hello World Today!</h1>;
-            }
-        }
+```js
+class Greeting extends React.Component {
+      render(){
+        return <h1>Hello World Today!</h1>;
+    }
+}
+```
 
-The main difference between this two approach is that functional are stateless and Class are statefull components.
+The main difference between this two approach is that functional component are stateless and class component are statefull components.
 
 We also must to use class component when we need to use the life cycle status provided by React.
 
-### 
-
 ### Which Use
 
-* Use a Class Componetn if you need to manage local state, add lifecycle methods to your component or add logic for events handlers, Otherwise use functional component.
+Use a class Components if you need to manage local state, lifecycle methods to your component or add logic for events handlers, otherwise use functional component.
 
-### Props
+## Props
 
-* Props are React's way of making components easily and dynamically customisable. They provide a way of passing properties/data down from one component to another.
+Props are React's way of making components easily and dynamically customisable. They provide a way of passing properties/data down from one component to another.
+  - It's important to note that props are read-only and that a component must never modify the props passed to it.
 
-* It's important to nothe that props are read-only and that a componetn must never modify the props passed to it.
+### Functional Component with Props
 
-### Functional COmponent with Props
-
-        const Greeting = props => <h1>Hello {props.name}</h1>;
-        ReactDOM.render(
-            <Greeting name={‘Edmond’}/>,
-            document.getElementById('root')
-        );
+```js
+const Greeting = props => <h1>Hello {props.name}</h1>;
+ReactDOM.render(
+    <Greeting name={‘Edmond’}/>,
+    document.getElementById('root')
+);
+```
 
 ### Class Component with Props
 
-        class Greeting extends React.Component {
-            render(){
-            return <h1>Hello {this.props.name}</h1>;
-            }
-        }
+```js
+class Greeting extends React.Component {
+    render(){
+    return <h1>Hello {this.props.name}</h1>;
+    }
+}
 
-        ReactDOM.render(
-                <Greeting name={‘Edmond’}/>,
-                document.getElementById('root')
-            );
+ReactDOM.render(
+      <Greeting name={‘Edmond’}/>,
+      document.getElementById('root')
+  );
+```
 
 ### Passing Destructuring between components
 
 A better way of use the props and the component is passing all the component information that will change into a props property, for this we can pass this information using destructing + props.
 
-        1. Define the Data that you need to pass.
+```jsx
+//Define the Data that you need to pass.
+const data = {
+  temperature: 5,
+  weatherState: SUN,
+  humidity: 10,
+  wind: '10 m/s',
+};
 
-                const data = {
-                temperature: 5,
-                weatherState: SUN,
-                humidity: 10,
-                wind: '10 m/s',
-                }
+//Put the data as a parameter in the component.
+<WeatherData data={data}></WeatherData>
 
-        2.  Put the data as a parameter in the component.
+// Update the component to use the parameters.
+const weatherData = ({ data }) => {
+const { temperature, weatherState, humidity, wind } = data;
+return (<div className="weatherDataCont" >
+        <WeatherTemperature temperature={temperature} weatherState={weatherState}/>
+        <WeatherExtraInfo humidity={humidity} wind={wind}/>
+</div>);
+};
 
-                <WeatherData data={data}></WeatherData>
 
-        3. Update the component to use the parameters.
+//There is another way (destructing feature) to do the same.
+const weatherData = ({ data : { temperature, weatherState, humidity, wind } }) => {
+return (<div className="weatherDataCont" >
+        <WeatherTemperature temperature={temperature} weatherState={weatherState}/>
+        <WeatherExtraInfo humidity={humidity} wind={wind}/>
+</div>);
+};
+```
 
-                const weatherData = ({ data }) => {
-                const { temperature, weatherState, humidity, wind } = data;
-                return (<div className="weatherDataCont" >
-                        <WeatherTemperature temperature={temperature} weatherState={weatherState}/>
-                        <WeatherExtraInfo humidity={humidity} wind={wind}/>
-                </div>);
-                };
+## React-State
 
-        3.1 There is another way (destructing feature) to do the same.
+* The State in react is one the most important concepts that we must have, this state is always created and have all the information related with the component. This state is always created in the constructor.
 
-                const weatherData = ({ data : { temperature, weatherState, humidity, wind } }) => {
-                return (<div className="weatherDataCont" >
-                        <WeatherTemperature temperature={temperature} weatherState={weatherState}/>
-                        <WeatherExtraInfo humidity={humidity} wind={wind}/>
-                </div>);
-                };
-### Links
+```JSX
+const data = {
+   temperature: 5,
+   weatherState: SUN,
+   humidity: 10,
+   wind: '10 m/s',
+}
 
-1. https://medium.com/the-andela-way/understanding-react-components-37f841c1f3bb
+class WeatherLocation extends Component {
+constructor() {
+   super();
+   this.state = {
+   city: 'Medellin',
+   data: data
+      };
+   }
+}
+```
 
-# Componente LifeCycle
+In the above code we are creating a component with the required information.
 
-In order to understand how it works the life cycles component in react, we first must understand what are the phases three of the that react has.
+How update the state?. If you want to update the React - state you have to use the setState() method.
+
+```JSX
+
+const data2 = {
+  temperature: 15,
+  weatherState: WINDY,
+  humidity: 22,
+  wind: '12 m/s',
+}
+
+handleUpdateClick = () => {
+  console.log("Updated.!!")
+  this.setState({
+  city: 'Medellin!!',
+  data: data2,
+  });
+}
+```
+
+## Component LifeCycle
+
+In order to understand how it works the life cycles component in react, we first must understand what are the three phases that react has.
 
 ![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/react-component-life-cycle.PNG) 
 
 In the previous image are all the phases and life cycles that exist in react
 
-## Mounting
+### Mounting
 
 Mounting means putting elements into the DOM.
 
@@ -293,7 +357,7 @@ The render() method is required and will always be called, the others are option
 
 ### getDerivedStateFromProps-updating
 
-Also at updates the getDerivedStateFromProps method is called. This is the first method that is called when a component gets updated.
+after an updates the getDerivedStateFromProps method is called. This is the first method that is called when a component gets updated.
 
 This will be a safer alternative to the previous lifecycle method componentWillReceiveProps().
 
@@ -374,205 +438,29 @@ React has only one built-in method that gets called when a component is unmounte
   }
 ```
 
-## React-State
-
-* The State in react is one the most important concepts that we must to have, this status is always created and have all the information related with the component. This state is always created in the constructor.
-
-```JSX
-const data = {
-   temperature: 5,
-   weatherState: SUN,
-   humidity: 10,
-   wind: '10 m/s',
-}
-
-class WeatherLocation extends Component {
-
-constructor() {
-   super();
-   this.state = {
-   city: 'Medellin',
-   data: data
-      };
-   }
-}
-```
-
-
-In the above code we are creating a component with the required information.
-
-* How to update the State?. If you want to update the React - state you have to use the setState() method.
-
-                const data2 = {
-                temperature: 15,
-                weatherState: WINDY,
-                humidity: 22,
-                wind: '12 m/s',
-                }
-
-                handleUpdateClick = () => {
-                        console.log("Updated.!!")
-                        this.setState({
-                        city: 'Medellin!!',
-                        data: data2,        
-                        });
-                }
-
-The handleUpdateClick could be in a event handler method. 
-
-## LifeCycle Component
-
-1. Constructor.
-2. Estado Inicial Status -> Render.
-3. OnClick Event
-4. Update the State with setState() and the component Render again.
-
-## Constants
-
-The use of constante in JS helps to increase the consistency of the naming in the programs.
-
-To create constantes in JS you must follow the next steps.
-
-* Create a JS file in which you wil define the constant that you need(for this example is the weather.js file).
-
-        export const CLOUD = "cloud";
-        export const CLOUDY = "cloudy";
-        export const SUN = "sun";
-        export const RAIN = "rain";
-        export const SNOW = "snow";
-        export const WINDY = "windy";
-
-* Import those constante in the file that you need it.
-
-        import {
-            CLOUD ,
-            CLOUDY,
-            SUN,  
-            RAIN, 
-            SNOW, 
-            WINDY, 
-        } from './../constants/weather';
-
-* Use the constante in the file.
-
-        <WeatherTemperature temperature={20} weatherState={RAIN}/>
-
-
-# Redux        
-
-Is a framework that deal with the state of an application, usually React and Redux works together.
-
-The state is unique and global in the entire application.
-
-The state is only modifies with actions.
-
-In order to setup redux we can follow the next steps:
-
-1. Install dependency
-
-```console
-npm install --save redux
-```
-
-2. Install Browser dependency
-
-In your browser search for redux devtools extendions
-
-3. Import redux in App.js
-
-```JSX
-import { createStore } from 'redux'; 
-```
-
-4. Create and setup store 
-
-```JSX
-const store = createStore(() => {}, 
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-```
-
-5. Send an action
-
-```JSX
-store.dispatch({type: 'setCity', value: city});
-```
-
-As you can see an action is just an object that has a type and value.
-
-With the previous steps you're going to be able to use Redux, in chrome browser you're going to see something like:
-
-![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-console.PNG) 
+The handleUpdateClick could be in a event handler method.
 
 ## React Router
 
-Router
-        BrowserRouter   -> Let modify URL
-        HashRouter      -> Use the symbol # and url -> Is not recommendaded to use it
-        Memory Router   -> Is a router that does not use URL
+React router is a tool that can help us to redirect pages in base of the url.
 
-BrowserRouter
-        basename={optionString}         -> Route base
-        forceRefresh=(optionalBool)     -> Force to refresh to old browser
-        getUserConfrimation=(optionalFunc) -> Ask to the user one specific actions
+### First Step React Router
 
-Route   -> Is the most importantn component when we are talking about navegations 
+In order to start with react router we first must installed with the next command.
 
-Ways to invoke Router
-
-<Route path="/customers" Component={Customer}/>
-<Route path="/customers" Component={() => (<Customer/>)}/>
-<Route path="/customers" children=(({match, ...rest}) => (match ? <p>No</p>: <p>Si</p>))/>
-
-Router Parameters
-        exact   -> When the url does not match exactly when the url passed in path, is not going to execute the component
-        strict  -> If exist an las back slash at the end "/customer" <> "/customer/
-        match   -> match is use if we have wildcard in our url "/customers/:dni" where dni could be any kind of number
-
-<Switch>
-
-Is very use when routes that can be ambiguos, with swicht it always evaluate the first result that matches
-
-<Link> y <NavLink>
-
-The only difference between the two previous element is that with navLink we can customize a little bit.
-
-withRouter
-
-It is a highOrder component and adds the properties match, location and history to the component, also when this properties change re-render the component
-
-The elemnt history is mutable.
-
-push            -> Go to a direction
-replace
-go(n)           -> Go n pages back or forward 
-goBack()        -> Go to the previous page
-goForward()     -> Go to the next page
-block()         ->
-
-That library helps to redirect pages.
-
+```sh
 npm install react-router-dom
-
-Import routers and link
-
-import { Link, BrowserRouter as Router } from 'react-router-dom'
-
-
-```JSX
-<Router>
-<div className="App">
-        <Link to="/customers">Customers</Link>
-</div>
-</Router>
 ```
 
-Inside of router only must be one element (div)
-
 ## Route
+
+Inside of router only must be one element (div)
 
 Route is another tool that let us relate a specific path with a component
 
 ```JSX
+import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 class App extends Component {
   renderDummy = () => <h1>Dummy</h1>;
   renderCustomers = () => <h1>Customers</h1>;
@@ -595,18 +483,67 @@ class App extends Component {
 }
 ```
 
-The previous code is going to swicht between component in based in the url.
-
-It is important to highlight what are doing the Route, exact and Switch features.
+It is important to highlight what is the above code doing: 
 
 1. Route: Basically works to move among different components.
 2. exact: Only one Route could match the url, that means that only one component is going to be show
 3. Switch: Only one the components inside of the switch is going to be show, the application is going to choose the one that matches with the
 specification.
 
-## Use of history
+### Router Parameters
 
-History let us move to another url, and store the previous url in a stack.
+There are some react router parameters that we have to explain:
+  - exact : This parameter it is very useful when we have multiples similar urls, but we need to map just if the url is exact the same.
+  - strict : If exist a back slash at the end  so "/customer" is going to be different than  "/customer/"
+  - match : match is use if we have wildcard in our url "/customers/:dni" where dni could be any kind of number
+
+## Switch
+
+Is very use when routes that can be ambiguos, with swicht it always evaluate the first result that matches
+
+```jsx
+<Switch>
+  <Route path="/customers/new" component={NewCustomerContainer}></Route>
+  <Route path="/customers/:dni" render={props => <CustomerContainer dni={props.match.params.dni} />}></Route>
+</Switch>
+```
+
+## Link and NavLink
+
+The only difference between the two previous element is that with navLink we can customize a little bit.
+
+## withRouter
+
+It is a high order component that adds the properties match, location and history into the component, also when these properties change re-render the component.
+
+```jsx
+import {Route, withRouter } from 'react-router-dom';
+
+handlerOnSubmitSuccess = () => {
+    this.props.history.goBack();
+}
+
+handleOnBack = () => {
+    this.props.history.goBack();
+};
+
+
+export default withRouter(connect(mapStateToProps, {
+    fetchCustomers,
+    updateCustomer,
+    deleteCustomer
+})(CustomerContainer));
+```
+
+In the above code there is an example of how to use the withRouter function in our components, also we see an example of the history property that let us move in the browser.
+
+### History property
+
+History let us move to another url, and store the previous url in a stack. The history property has some usefull methods.
+  - push  : go to a direction
+  - go(n) : Go n pages back or forward
+  - goBack() : Go to the previous page
+  - goForward() :  Go to the next page
 
 ```JSX
  handleOnClick = () => {
@@ -614,14 +551,18 @@ History let us move to another url, and store the previous url in a stack.
         this.props.history.push('/customers')                         
 }
 ```
-
 In order to always have the history property inside our component we must use the withRouter feature from the react-router-dom.
 
 ```JSX
 export default withRouter(HomeContainers);
 ```
 
-## Redux
+## Redux        
+
+It is a framework that deal with the state of an application, usually React and Redux works together.
+  - The state is unique and global in the entire application.
+  - The state only get modified with actions.
+
 
 Redux is based in an architecture call Flux
 
@@ -630,13 +571,13 @@ Redux is based in an architecture call Flux
 3. Action
 4. View
 
-Steps to use Redux.
+### Install
 
-1. Install
-
+```sh
 npm install --save redux
+```
 
-2. Create store
+### Store
 
 ```JSX
 import { createStore, compose } from 'redux';
@@ -645,7 +586,7 @@ const reducers = state => state;
 export const store = createStore(reducers, {}, composeEnhancers());
 ```
 
-2.1 Related app with provider.
+### App with provider
 
 ```JSX
 import { Provider } from 'react-redux';
@@ -658,7 +599,8 @@ const rootComponent= (
 )
 ReactDOM.render(rootComponent, document.getElementById('root'));
 ```
-3. Create Action
+
+### Create Action
 
 ```JSX
 import { FETCH_CUSTOMERS} from './../constants/index';
@@ -667,7 +609,7 @@ import { createAction } from 'redux-actions';
 export const fetchCustomers = createAction(FETCH_CUSTOMERS);
 ```
 
-4. Use connect in our container component
+### Redux connect
 
 ```JSX
 import {connect} from 'react-redux';
@@ -682,12 +624,13 @@ const mapDispatchToProps = dispatch => (
 export default withRouter(connect(null, mapDispatchToProps)(CustomerContainer));
 ```
 
-5. Create reducer
+### Reducer
+
+Reducers basically is a function that is going to update the state of the application, usuaylly reducers are pure functions(Is an function that only depends of the input, it does not depent of any information out of the function)
+
 
 In order to create a setup a reducer we must follow some steps.
 
-
-Create the reducer.
 
 ```JSX
 import { handleActions } from 'redux-actions';
@@ -720,9 +663,19 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(reducers, {}, composeEnhancers());
 ```
 
+### Install Browser dependency
+
+In your browser search for redux devtools extensions
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-console.PNG) 
+
 ## Redux-Forms
 
+To install redux forms please type in the cli the next command.
+
+```sh
 npm install --save redux-form
+```
 
 1. In the index.js from our reducer put the next code
 
@@ -924,7 +877,7 @@ export default setPropsAsInitial(constumerEditForm);
 
 In order to submit information in a form we need to follow the next steps.
 
-1. Create a <form>
+1. Create a `<form>`
 2. In the form tag add the onSubmit property.
 3. In the onSubmit property must be assigned the action that we want to apply
 4. Create a button with type submit.
@@ -969,8 +922,10 @@ const CustomerEdit = ({ name, dni, age, handleSubmit, onBack}) => {
 
 ## Redux-promises
 
-npm install --save redux-promise
 
+```jsx
+npm install --save redux-promise
+```
 
 The information in the store only can be modified with actions.
 
@@ -997,8 +952,6 @@ Containers, this one are component that has access to the state of the applicati
 Presentational Components, this component only are able to draw information in the screen, but does not have access to the state of the applicaction.
 
 ### Reducers
-
-Reducers basically is a function that is going to update the state of the application, usuaylly reducers are pure functions(Is an function that only dependes of the input, it does not depent of any information out of the function)
 
 ## Hooks
 
