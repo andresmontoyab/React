@@ -579,6 +579,14 @@ npm install --save redux
 
 ### Store
 
+The information in the store only can be modified with actions.
+
+The data flow is strictly uni-directional(There is no doble binding)
+
+Single Source of Thruth: SSOT 
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-flow.PNG) 
+
 ```JSX
 import { createStore, compose } from 'redux';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -927,18 +935,6 @@ const CustomerEdit = ({ name, dni, age, handleSubmit, onBack}) => {
 npm install --save redux-promise
 ```
 
-The information in the store only can be modified with actions.
-
-The data flow is strictly uni-directional(There is no doble binding)
-
-Single Source of Thruth: SSOT 
-
-![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-flow.PNG) 
-
-## Best Approach Store
-
-In the previous example we import the "store" in our components, 
-
 ## Types of Components
 
 ![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/dumb-and-smart-components-redux.jpg) 
@@ -951,8 +947,6 @@ Containers, this one are component that has access to the state of the applicati
 
 Presentational Components, this component only are able to draw information in the screen, but does not have access to the state of the applicaction.
 
-### Reducers
-
 ## Hooks
 
 ### useState
@@ -962,13 +956,6 @@ Deal with the state of the component that means is very similar to the setState.
 ### useEffect
 
 Lets hook to component cycle events like componentDidMount, componentDidUpdate and componentWillMount
-
-
-### MiddleWares
-
-It is used to call rest apis as middleware
-
-npm install --save redux-thunk
 
 # JavaScript
 
