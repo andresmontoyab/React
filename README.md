@@ -2,20 +2,26 @@
 
 ## Index
 
-* [NodeJS](#nodejs)
+* [NodeJS](#NodeJs)
 * [Yarn](#yarn)
 * [Npm](#npm)
 * [React](#react)
   * [Why React?](#why)
-     * [Virtual Dom](#Virtual-Dom)
-     * [Reconcilation](#Reconcilation)
-     * [Create App](#Create-App)
+    * [Virtual Dom](#Virtual-Dom)
+    * [Reconcilation](#Reconcilation)
+    * [Create App](#Create-App)
   * [Components](#components)
     * [Functional Component](#FunctionalComponent)
     * [Class Component](#ClassComponent)
     * [Which Use](#Which-Use)
   * [Props](#Props)
   * [React State](#React-State)
+  * [Types of Components](#Types-of-Components)
+      * [Smart Components](#Smart-Components)
+      * [Dumb Components](#Dumb-Components)
+  * [Hooks](#Hooks)
+    * [useState](#useState)
+    * [useEffect](#useEffect)
   * [Compenent LifeCycle](#Component-LifeCycle)
       * [Mounting](#Mounting)
           * [Constructor](#constructor-mounting)
@@ -32,8 +38,25 @@
           * [ComponentWillUnmount](#componentWillUnmount-unmounting)
   * [React Router](#React-Router)
 * [Redux](#Redux)
-  ### First Steps Redux
-
+  * [Redux First Steps](#Redux-First-Steps)
+    * [Install](#Install)
+    * [Store](#Store)
+    * [App with provider](#App-with-provider)
+    * [Create Action](#Create-Action)
+    * [Reducer](#Reducer)
+    * [Install Browser dependency](#Install-Browser-dependency)
+  * [Redux-Forms](#Redux-Forms)
+    * [Form Validations](#Form-Validations)
+      * [Field Validation](#Field-Validation)
+      * [Global Validations](#Global-Validations)
+    * [Submitting Form](#Submitting-Form)
+* [PropTypes](#PropTypes)
+  * [Install PropTypes](#Install-PropTypes)
+  * [Using PropTypes](#Using-PropTypes)
+  * [Required Fields](#Required-Fields)
+  * [Shortcuts](#Shortcuts)
+  * [PropType Objects](#PropType-Objects)
+  * [Types of PropTypes](#Types-of-PropTypes)
 
 
 * [JavaScript Basic](#javascript)
@@ -42,9 +65,7 @@
   * [String Template](#StringTemplate)
   * [Prop Types](#PropTypes)
   * [Http Calls](#Using-HTTP-Calls)
-  * [Promises](#Promises)
-* [CSS Basic](#CSS)
-  * [CSS Commom Properties](#CSS-Common-Properties)
+
   * [Material UI](#Material-Ui)
   * [Responsive Design](#Responsive-Design)
 * [Usefull Extension](#Extensions)
@@ -271,6 +292,28 @@ handleUpdateClick = () => {
 }
 ```
 
+## Types of Components
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/dumb-and-smart-components-redux.jpg) 
+
+### Smart Components
+
+Containers, this one are component that has access to the state of the applications.
+
+### Dumb Components
+
+Presentational Components, this component only are able to draw information in the screen, but does not have access to the state of the applicaction.
+
+## Hooks
+
+### useState
+
+Deal with the state of the component that means is very similar to the setState.
+
+### useEffect
+
+Lets hook to component cycle events like componentDidMount, componentDidUpdate and componentWillMount
+
 ## Component LifeCycle
 
 In order to understand how it works the life cycles component in react, we first must understand what are the three phases that react has.
@@ -428,8 +471,6 @@ The next phase in the lifecycle is when a component is removed from the DOM, or 
 
 React has only one built-in method that gets called when a component is unmounted:
 
-1. componentWillUnmount()
-
 ### componentWillUnmount-unmounting
 
 ```JSX
@@ -570,6 +611,8 @@ Redux is based in an architecture call Flux
 2. Store
 3. Action
 4. View
+
+### Redux First Steps
 
 ### Install
 
@@ -928,34 +971,95 @@ const CustomerEdit = ({ name, dni, age, handleSubmit, onBack}) => {
 };
 ```
 
-## Redux-promises
+## PropTypes
 
+Because JS is not a Type Languague so is most likely that a error happens because the type of the parameter isn't the require it. So for this reason we need to use a tool called PropTypes to verify the type of the parameters.
 
-```jsx
-npm install --save redux-promise
+### Install PropTypes
+
+```sh
+## yarn
+yarn add prop-types
 ```
 
-## Types of Components
+```sh
+## npm
+npm install prop-types
+```
 
-![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/dumb-and-smart-components-redux.jpg) 
+### Using PropTypes
 
-### Smart Components
+```jsx
+import PropTypes from 'prop-types';
 
-Containers, this one are component that has access to the state of the applications.
+const WeatherTemperature = ({temperature, weatherState}) => (
+    <div>
+        {
+            getWeatherIcon(weatherState)
+        }
+        <span>{temperature}</span>
+    </div>
+);
 
-### Dumb Components
+WeatherTemperature.propTypes = {
+  temperature: PropTypes.number,
+  weatherState: PropTypes.string
+}
+```
 
-Presentational Components, this component only are able to draw information in the screen, but does not have access to the state of the applicaction.
+In the above code we are setting up that the parameters for the WeatherTemperature are going to be number and string.
 
-## Hooks
+### Required Fields
 
-### useState
+If within the object/component there is a field that we required, we can set up with the keyword required.
 
-Deal with the state of the component that means is very similar to the setState.
+```jsx
+        WeatherTemperature.propTypes = {
+            temperature: PropTypes.number.isRequired,
+            weatherState: PropTypes.string.isRequired
+        }
+```
 
-### useEffect
+### Shortcuts
 
-Lets hook to component cycle events like componentDidMount, componentDidUpdate and componentWillMount
+If you have installed ReactJS Code Snippet there are some shortcut available for the propTypes.
+
+```jsx
+ptsr = Prop Type String Required.
+ptnr = Prop Type Number Required
+```
+
+### PropType Objects
+
+For complex objects you can use prop types to validate the whole structure.
+
+```jsx
+const data = {
+  temperature: 5,
+  weatherState: SUN,
+  humidity: 10,
+  wind: '10 m/s',
+}
+
+weatherData.propTypes = {
+data: PropTypes.shape({
+        temperature: PropTypes.number.isRequired,
+        weatherState: PropTypes.string.isRequired,
+        humidity: PropTypes.number.isRequired,
+        window: PropTypes.string.isRequired
+  })
+}
+```
+
+### Types of PropTypes
+
+1. optionalArray: PropTypes.array,
+2. optionalBool: PropTypes.bool,
+3. optionalFunc: PropTypes.func,
+4. optionalNumber: PropTypes.number,
+5. optionalObject: PropTypes.object,
+6. optionalString: PropTypes.string,
+7. optionalSymbol: PropTypes.symbol
 
 # JavaScript
 
@@ -1037,88 +1141,6 @@ Always anonymus also cant be used like constructor.
         var name = "Brendan";
         console.log(`Yo, ${name}!`);
 
-### PropTypes
-
-Because JS is not a Type Languague so is most likely that a error happens because the type of the parameter isn't the require it. So for this reason we need to use a tool called PropTypes to verify the type of the parameters.
-
-* First we must install the prop types.
-
-        1. yarn add prop-types.
-        2. npm install prop-types.
-
-* Also we have to import in our files the package proptypes.
-
-        import PropTypes from 'prop-types';
-
-* After that we can use the prop-types features.
-
-        const WeatherTemperature = ({temperature, weatherState}) => (
-            <div>
-                {
-                    getWeatherIcon(weatherState)
-                }
-                <span>{temperature}</span>
-            </div>
-        );
-
-* For the next code we are setting up that the parameter for the componetn WeatherTemperature must be number and also String.
-
-        WeatherTemperature.propTypes = {
-        temperature: PropTypes.number,
-        weatherState: PropTypes.string
-}
-
-* There is another scenario in which i dont send any argument to the weatherTemperature componente, if i need that the field is not empty i could set upt the component field as require.
-
-        WeatherTemperature.propTypes = {
-            temperature: PropTypes.number.isRequired,
-            weatherState: PropTypes.string.isRequired
-        }
-
-* If you have installed ReactJS Code Snippet there are some shortcut available for the propTypes.
-
-        ptsr = Prop Type String Required.
-        ptnr = Prop Type Number Required
-
-* For more complex object you can use prop types to validate the complete structure.
-
-        1. For example if the waitted structures is the next.
-
-                const data = {
-                temperature: 5,
-                weatherState: SUN,
-                humidity: 10,
-                wind: '10 m/s',
-                }
-
-        2. You could validate it in the next way.
-
-                weatherData.propTypes = {
-                data: PropTypes.shape({
-                        temperature: PropTypes.number.isRequired,
-                        weatherState: PropTypes.string.isRequired,
-                        humidity: PropTypes.number.isRequired,
-                        window: PropTypes.string.isRequired
-                })
-                }
-
-* Types of PropTypes.
-
-        1. optionalArray: PropTypes.array,
-        2. optionalBool: PropTypes.bool,
-        3. optionalFunc: PropTypes.func,
-        4. optionalNumber: PropTypes.number,
-        5. optionalObject: PropTypes.object,
-        6. optionalString: PropTypes.string,
-        7. optionalSymbol: PropTypes.symbol
-
-* Anythin that can be rendered: number,string etc
-
-        1. optionalNode: PropTypes.node,
-
-* A React Element
-
-        1. optionalElement: PropTypes.element
 
 ## Using HTTP Calls
 
@@ -1139,68 +1161,8 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
                    console.log(JSON.stringify(data))
                 });
 
-## Promises
-
-* A promises is an object that is used in async request and represent a value that could be available "now", in the "future" or "never". Also a promises could have the next status.
-
-1. Pending -> Inicial Status is not fullfil or rejected.
-
-2. Fullfill -> The operation was sucessfull.
-
-3. Rejected -> The operation fails
-
-### Promises-Flow:
-
-* In the next image you will find the posible scenarios when we are dealing with a promises.
-
-![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/promisesFlow.PNG) 
-
-### Define Promise
-
-                let promise = new Promise((resolve, rejected ) => {
-                        setTimeout(() => {
-                                resolve("Works")
-                        }, 2000);
-                });
-
-                console.log("The Promise Begins");
-                promise.then((message) => {
-                        console.log(message);
-                });
 
 
-
-# CSS
-
-* Is a languague that describe how to visualize the html, The css files help us to give to the component shape, color, size, border and different UX features.
-
-* If we want to use css files in react first we must to import the .css in our JS file.
-
-        1. Create a styles.css file
-        2. Import the styles.css file 
-            import './styles.css';
-
-* className -> is a functionality in which express that a element will match in a respective css configuration.
-
-        1. In Js File
-
-            <div className="weatherDataCont" >
-                <WeatherTemperature temperature={30} weatherState={RAIN}/>
-                <WeatherExtraInfo humidity={10} wind={"10 m/s"}/>
-            </div>
-
-        2. In Css File.
-
-            .weatherDataCont {
-            background-color: red;
-            }
-
-## CSS Common Properties      
-
-        1. widht -> width = "400px"  or width = 40%
-
-        2. height 
-        
 ## Material-Ui
 
 * Installation
@@ -1217,11 +1179,7 @@ Because JS is not a Type Languague so is most likely that a error happens becaus
 2. Toolbar
 3. Typography
 
-## Responsive Design      
 
-* Media Queries
-
-With the help of viewport and media queries we can identified the different types of views and depend of each view we can change the style of the application.
 
 * FlexBox
 
@@ -1282,14 +1240,3 @@ Bootsrap stablish a Grid with twelve positions in which the application could re
 ## Other Extension
 
 1. ReactJs Code Snippet.
-
-
-        
-
-
-
-
-
-
-
-
