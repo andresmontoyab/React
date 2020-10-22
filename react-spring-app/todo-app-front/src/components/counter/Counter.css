@@ -1,0 +1,30 @@
+button {
+    font-size: 10px;
+    background-color: green;
+    padding: 15px 30px;
+    color: white;
+    width: 10%;
+}
+
+.count {
+    text-align: center;
+    font-size: 100px;
+    width: 100%;    
+}
+
+.reset {
+    width: 20%;
+}
+
+.cont {
+    text-align: center;
+}
+
+.topCont {
+    text-align: center;
+    padding-top: 10%;
+}
+
+body {
+    background-color: khaki;
+}
