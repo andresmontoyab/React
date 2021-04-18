@@ -4,8 +4,14 @@ import Home from './Home';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import Checkout from './Checkout'
 import Login from './Login';
+import { useEffect } from 'react';
+
 
 function App() {
+  useEffect(() => {
+      // WIll only run once when the app component loads
+  }, [])
+
   return (
     <Router>
       <div className="App">
