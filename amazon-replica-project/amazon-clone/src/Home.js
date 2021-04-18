@@ -14,11 +14,13 @@ function Home() {
 
                 <div className="home__row">
                     <Product 
+                        id={1}
                         title ='The Lean Startup'
                         price ={29.99}
                         rating={5}
                         image= "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"/>
                     <Product 
+                        id={2}
                         title ='Lg Monitor'
                         price ={599.99}
                         rating={4}
@@ -27,16 +29,19 @@ function Home() {
 
                 <div className="home__row">
                     <Product 
+                        id={3}
                         title ='Demon Souls '
                         price ={80.00}
                         rating={4}
                         image= "https://images-na.ssl-images-amazon.com/images/I/81QoNRp5%2BWL._SL1353_.jpg"/>
                     <Product 
+                        id={4}
                         title ='God of War'
                         price ={89.99}
                         rating={4}
                         image= "https://media.vandal.net/m/90451/god-of-war-ragnarok-20201124143582_1.jpg"/>
                     <Product 
+                        id={5}
                         title ='Horizon Zero Dawn'
                         price ={60.99}
                         rating={4}
@@ -46,6 +51,7 @@ function Home() {
 
                 <div className="home__row">
                     <Product 
+                        id={6}
                         title ='Ps5 '
                         price ={499.99}
                         rating={4}

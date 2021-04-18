@@ -25,10 +25,13 @@ function Header() {
                 <SearchIcon className="header__searchIcon"/>
             </div>
             <div className='header__nav'>
-                <div className='header__option'>
-                    <span className='header__optionaLineOne'> Hello Guest</span>
-                    <span className='header__optionaLineTwo'> Sign in</span>
-                </div>
+                <Link to="/login">
+                    <div className='header__option'>
+                        <span className='header__optionaLineOne'> Hello Guest</span>
+                        <span className='header__optionaLineTwo'> Sign in</span>
+                    </div>
+                </Link>
+                
                 <div className='header__option'>
                     <span className='header__optionaLineOne'> Returns</span>
                     <span className='header__optionaLineTwo'> & Orders</span>
