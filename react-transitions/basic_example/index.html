@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta mame="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Transitions and Animations</title>
+        <style>
+            @keyframes showUp {
+                from {
+                    transform: scale(0.6);
+                }
+                to {
+                    transform: scale(1);
+                }
+            }
+
+            @keyframes latido {
+                0% {
+                    transform: scale(1);
+                    background-color: white;
+
+                }
+
+                50% {
+                    transform: scale(0.5);
+                    background-color: red;
+
+                }
+
+                100% {
+                    transform: scale(1);
+                    background-color: white;
+                }
+            }
+
+            .ball {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background: tomato;
+                animation: 1000ms latido ease 5;
+                align-items: center;
+            }
+
+            body {
+                background: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="ball"></div>
+    </body>
+</html>
