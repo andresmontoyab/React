@@ -33,4 +33,18 @@ const Acordeon = ({ title, content}) => {
     )
 }
 
-export default Acordeon
+const AcordeonContainer = () => {
+    return (
+        <div>
+            <Acordeon
+                title = 'Acordeon Title'
+                content= 'This is the first content'/>
+            <Acordeon
+                title = 'The second Acordean'
+                content= 'This is the first content with more more more more text that the other one it is a lotof text because the idea is that his one has at leas two columns, lets wait'/>
+        </div>
+        
+    )
+}
+
+export default AcordeonContainer
