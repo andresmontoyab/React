@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import './../animations.css'
+import '../animations.css'
 
 
 const Header = ({show}) => {
-const classes = show ? 'header header-active' : 'header' 
+
+    const classes = show 
+        ? 'header header-active' 
+        : 'header' 
  
 
 
