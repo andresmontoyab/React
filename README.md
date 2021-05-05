@@ -4,8 +4,6 @@
 
 * [React Router](https://github.com/andresmontoyab/ReactJs/blob/master/react-router-v5)
 * [React Styles and Transitions](https://github.com/andresmontoyab/ReactJs/blob/master/react-styles-and-animations)
-
-
 * [NodeJS](#NodeJs)
 * [Yarn](#yarn)
 * [Npm](#npm)
