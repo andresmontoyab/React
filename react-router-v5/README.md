@@ -90,6 +90,81 @@ Is very use when routes that can be ambiguos, with swicht it always evaluate the
 </Switch>
 ```
 
+# Navigation
+
+We already talked about Router and Switch, those properties help us to map a ```url``` with a ```component```, nevertheless in order to re render the pages with the new component the path must change.
+
+React router provide us another tools that let us change the path programatically, those tools are 
+
+1. Link
+2. NavLink
+
+## <nav> and <a>
+
+The common way to navigate between different urls or paths using raw html was with the tag ```<nav>``` and ```<a>```, even that this method works good, it has a problem, if we click in a ```<a>``` then is going to re load all the page and that it is a performance issue
+
+```html
+<nav>
+        <a href="/"> Nav Home</a>
+        <a href="/another"> Nav Home Hola</a>
+        <a href="/products"> Nav Products</a>
+</nav>
+```
+
+## Link
+
+React provides us a component that help us to navigate among paths but without reloading the all pages. This component is called ```<Link>```
+
+Let's see an example:
+
+```jsx
+import React from 'react'
+import {Link} from 'react-router-dom'
+
+const SimpleNavegation = () => (
+    <nav>
+        <Link to="/"> Nav Home</Link>
+        <Link to="/another"> Nav Home Hola</Link>
+        <Link to="/products"> Nav Products</Link>
+        <Link to={
+            {
+                pathname: '/products',
+                search: '?order=name',
+                state: {
+                    'name': 'Andres',
+                    'age': 25
+                }
+            }
+        }> Complex Search</Link>
+    </nav>
+)
+
+```
+
+With the above code, we have navigation in our page without reloading!.
+
+Please note that with our ```Link``` component we are able to send state a the new component to be showed.
+
+## NavLink
+
+The ```NavLink``` component is an extension of ```Link```, NavLink does everything that ```Link``` does but also it has some other properties that can help us in some scenarios
+
+```jsx
+const NavSimpleNavegation = () => (
+    <nav>
+        <NavLink exact activeStyle={NavActive} to="/"> Nav Home</NavLink>
+        <NavLink activeStyle={NavActive} to="/another"> Nav Home Hola</NavLink>
+        <NavLink 
+            activeStyle={NavActive} 
+            to="/products"> 
+            Nav Products
+        </NavLink>
+    </nav>
+)
+```
+
+In the above code there are some examples of the ```NavLink``` properties.
+
 ## Link and NavLink
 
 The only difference between the two previous element is that with navLink we can customize a little bit.
