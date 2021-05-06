@@ -1,4 +1,4 @@
-import {SET_FORECAST_DATA, SET_WEATHER_CITY, GET_WEATHER_CITY} from './../actions';
+import {SET_FORECAST_DATA, SET_WEATHER_CITY, GET_WEATHER_CITY} from '../actions';
 import toPairs from 'lodash.topairs';
 
 export const cities = (state = {}, action) => {

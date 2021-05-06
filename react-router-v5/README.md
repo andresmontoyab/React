@@ -50,12 +50,34 @@ It is important to highlight what is the above code doing:
 3. Switch: Only one the components inside of the switch is going to be show, the application is going to choose the one that matches with the
 specification.
 
-### Router Parameters
+### Route Parameters
 
-There are some react router parameters that we have to explain:
+There are some react route parameters that we have to explain:
   - exact : This parameter it is very useful when we have multiples similar urls, but we need to map just if the url is exact the same.
   - strict : If exist a back slash at the end  so "/customer" is going to be different than  "/customer/"
   - match : match is use if we have wildcard in our url "/customers/:dni" where dni could be any kind of number
+  - sensitive: With the sensitive property we define that our path is going to be sensitive to lower/upper case
+
+  ### Ways to use Route
+
+```JSX
+  const App = () => {
+  return (
+    <Router>
+      <Route path='/' exact component={() => (<h1>Home with component</h1>)}/>
+      <Route path='/products' render={Products}/>
+      <Route path='/another'>
+        <h1>This is the another way</h1>
+      </Route>
+    </Router>
+  )};
+```
+
+1. The first approach using component is going to render every time the create.Component method.
+
+2. The second approach using render is recommended when we use an array function as component
+
+3. the third way to use Route is with prop children.
 
 ## Switch
 
