@@ -9,7 +9,11 @@ const NavSimpleNavegation = () => (
     <nav>
         <NavLink exact activeStyle={NavActive} to="/"> Nav Home</NavLink>
         <NavLink activeStyle={NavActive} to="/another"> Nav Home Hola</NavLink>
-        <NavLink activeStyle={NavActive} to="/products"> Nav Products</NavLink>
+        <NavLink 
+            activeStyle={NavActive} 
+            to="/products"> 
+            Nav Products
+        </NavLink>
     </nav>
 )
 

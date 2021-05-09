@@ -1,10 +1,24 @@
 # React Router
 
-## React Router
+* [Getting Start](#Getting-Start)
+* [Route](#Route)
+  * [Route Parameters](#Route-Parameters)
+  * [Ways to use Route](#Ways-to-use-Route)
+* [Switch](#Switch)
+* [Path Parameters](#Path-Parameters)
+* [Query Parameters](#Query-Parameters)
+* [Navigation](#Navigation)
+  * [Common Approach](#Common-Approach)
+  * [Link](#Link)
+  * [NavLink](#NavLink)
+  * [Redirect](#Redirect)
+* [History](#History)
+
+  
+
+## Getting Start
 
 React router is a tool that can help us to redirect pages in base of the url.
-
-### First Step React Router
 
 In order to start with react router we first must installed with the next command.
 
@@ -58,7 +72,7 @@ There are some react route parameters that we have to explain:
   - match : match is use if we have wildcard in our url "/customers/:dni" where dni could be any kind of number
   - sensitive: With the sensitive property we define that our path is going to be sensitive to lower/upper case
 
-  ### Ways to use Route
+### Ways to use Route
 
 ```JSX
   const App = () => {
@@ -90,7 +104,78 @@ Is very use when routes that can be ambiguos, with swicht it always evaluate the
 </Switch>
 ```
 
-# Navigation
+## Path Parameters
+
+Usually when we are changing from one component to another component we need to send information or parameters, also when we go to a specific ```url``` we need to receive special data, now we are going to see how to send and receive information using react router.
+
+```jsx
+const CategoryProducts = ({match}) => {
+  return (
+      <h1>Categoria Productos {match.params.category} with id {match.params.id}</h1>
+  )
+}
+
+
+function PlayingWithRouter() {
+  return (
+    <Router>
+        <Route path='/products' exact render={Products}/>
+        <Route path='/products/:category/:id?' render={CategoryProducts}/>
+    </Router>
+  );
+}
+```
+
+Let's see what the above code does.
+
+1. There are two mapped routes ```/products```  and ```/products/:category/:id?'```
+2. The first route is generic, does not receive any parameter
+3. The second route receive two parameters category and id, the symbol ```?``` means that that parameter is optional
+4. If you see the CategoryProducts there is a prop called ```match``` that we can use to retrieve those properties
+5. In ```match.params.name_property``` you are going to find the values passed as parameter
+
+## Query Parameters
+
+Query Parameters are the second option to send information to the ```url``` that we need to render
+
+Query params is when we pass some queries in the ur like ```url?property=value&property2=value2```
+
+So keep in mind that in order to use query params we need the symbol ```?``` and if we want more that one property we can use the ```?```.
+
+```jsx
+const Books = (props) => {
+  const query = new URLSearchParams(props.location.search)
+  const price = query.get('price')
+  const size = query.get('size')
+  return (
+    <div>
+      <h1>Books</h1>
+      <div>Price: {price}</div>
+      <div>Size: {size}</div>
+    </div>
+      
+  )
+}
+
+function PlayingWithRouter() {
+  return (
+    <Router>
+        <Route path='/books' exact render={Books}/>
+    </Router>
+  );
+}
+
+```
+
+Let's analyse the above code that is using query parameters
+
+1. In the PlayingWithRouter we just create one route ```/boook``` that is going to be mapped with the component ```Books```
+2. Please keep in mind that this route does not have any params in the route definition.
+3. Now let's say that we use the next url ```/books?price=500&size=M```, so there are two properties price and size
+4. In order to retrieve those properties we can use the ```props.location.search``` property
+5. In the ```Books``` Component we use the ```URLSearchParams``` interface, that interface let us transfor the incoming query params to every property.
+
+## Navigation
 
 We already talked about Router and Switch, those properties help us to map a ```url``` with a ```component```, nevertheless in order to re render the pages with the new component the path must change.
 
@@ -99,7 +184,7 @@ React router provide us another tools that let us change the path programaticall
 1. Link
 2. NavLink
 
-## <nav> and <a>
+## Common Approach
 
 The common way to navigate between different urls or paths using raw html was with the tag ```<nav>``` and ```<a>```, even that this method works good, it has a problem, if we click in a ```<a>``` then is going to re load all the page and that it is a performance issue
 
@@ -165,9 +250,36 @@ const NavSimpleNavegation = () => (
 
 In the above code there are some examples of the ```NavLink``` properties.
 
-## Link and NavLink
+## Redirect
 
-The only difference between the two previous element is that with navLink we can customize a little bit.
+```Redirect``` is very similar to ```Link``` or ```NavLink``` but with ```Redirect``` we can move to another ```url``` programatically. Let's see an example
+
+```jsx
+const Profile = (props) => {
+  const isAuth = false
+  return isAuth
+    ? <h2>Welcome to your Profile</h2>
+    : <Redirect to='/login'/>
+}
+
+const Login = () => (
+  <h1>Plase Login</h1>
+)
+
+
+function PlayingWithRouter() {
+  return (
+    <Router>
+        <Route path='/profile' render={Profile}/>
+        <Route path='/login' render={Login}/>
+    </Router>
+  );
+}
+```
+
+1. We define two mapped route, ```Profile``` and ```Login```
+2. When we are in ```Login``` we validate if the user is authenticated, for this example we hardcoded that No.
+3. The application is always going to redirect to ```Login``` Component using the ```Redirect``` Component
 
 ## withRouter
 
@@ -194,10 +306,11 @@ export default withRouter(connect(mapStateToProps, {
 
 In the above code there is an example of how to use the withRouter function in our components, also we see an example of the history property that let us move in the browser.
 
-### History property
+### History
 
 History let us move to another url, and store the previous url in a stack. The history property has some usefull methods.
   - push  : go to a direction
+  - replace  : replace the current direction with the new one
   - go(n) : Go n pages back or forward
   - goBack() : Go to the previous page
   - goForward() :  Go to the next page
