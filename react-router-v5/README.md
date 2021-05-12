@@ -14,7 +14,6 @@
   * [Redirect](#Redirect)
 * [History](#History)
 
-  
 
 ## Getting Start
 
