@@ -35,7 +35,7 @@ Redux is based in an architecture call Flux
 npm install --save redux
 ```
 
-### Store
+## Store
 
 The information in the store only can be modified with actions.
 
@@ -48,9 +48,36 @@ Single Source of Thruth: SSOT
 ```JSX
 import { createStore, compose } from 'redux';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const reducers = state => state;
+const initialState = 0;
+function reducers(state = initialState, action) {
+    switch(action.type) {
+        case 'INCREMENT': {
+            return state +1 
+        }
+        case 'DECREMENT': {
+            return state  - 1 
+        }
+        default:
+            return state
+    }
+}
+
 export const store = createStore(reducers, {}, composeEnhancers());
 ```
+
+The store provide us three usefull functions to use 
+
+```jsx
+store.subscribe(() => console.log(store.getState()))
+
+store.dispatch({type: 'INCREMENT'})
+store.dispatch({type: 'INCREMENT'})
+store.dispatch({type: 'DECREMENT'})
+```
+
+- ```subscribe```: Every time that the state change the subscribe function is invoked
+- ```getState```: Retrieves the store current state
+- ```dispatch```: Send an action to the store, this actions + reducer are going to modified the store.
 
 ## App with provider
 
