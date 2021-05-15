@@ -1,11 +1,19 @@
 import React from 'react'
-import './store'
+import store from  './redux/store'
+import { Provider } from 'react-redux'
+import Counter from './components/Counter'
+import User from './components/User'
+import Fruits from './components/Fruits'
 
 const App = () => {
   return (
-    <div>
-      This is the react-reduce
-    </div>
+    <Provider store = {store}>
+      <div>
+        <Counter/>
+        <User/>
+        <Fruits/>
+      </div>
+    </Provider>
   )
 }
 
