@@ -18,3 +18,4 @@ function fruits(state = initialState, action) {
 }
 
 export default fruits
+

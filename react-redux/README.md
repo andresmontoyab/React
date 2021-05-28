@@ -15,6 +15,15 @@
     * [Submitting Form](#Submitting-Form)
   
 
+Steps to explain Redux
+
+1. First define the concepts, Store, Reducer, Actions and Dispatcher
+2. Create a simple reducer
+3. Create a store with one reducer
+4. Create store with multiples reducers
+5. Explan what is an action
+6. Connect with components 
+
 # Redux        
 
 It is a framework that deal with the state of an application, usually React and Redux works together.

@@ -4,14 +4,16 @@ import { Provider } from 'react-redux'
 import Counter from './components/Counter'
 import User from './components/User'
 import Fruits from './components/Fruits'
+import Todos from './todo/component/Todos'
 
 const App = () => {
   return (
     <Provider store = {store}>
       <div>
-        <Counter/>
+        <Todos></Todos>
+        {/*<Counter/>
         <User/>
-        <Fruits/>
+        <Fruits/>*/}
       </div>
     </Provider>
   )
