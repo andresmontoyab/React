@@ -8,6 +8,7 @@
   * [Create Action](#Create-Action)
   * [Reducer](#Reducer)
   * [Install Browser dependency](#Install-Browser-dependency)
+  * [Middlewares](#Middlewares)
 * [Redux-Forms](#Redux-Forms)
     * [Form Validations](#Form-Validations)
       * [Field Validation](#Field-Validation)
@@ -170,6 +171,20 @@ export const store = createStore(reducers, {}, composeEnhancers());
 In your browser search for redux devtools extensions
 
 ![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-console.PNG) 
+
+## Middlewares
+
+Middlewares are tools that let us make side effect calls when we applied action ober our state.
+
+![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-flow-middlewares.PNG) 
+
+### redux-logger
+
+npm i redux-logger
+
+### redux thunk
+
+npm i redux-thunk
 
 ## Redux-Forms
 
