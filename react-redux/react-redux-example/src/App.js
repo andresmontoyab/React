@@ -12,7 +12,7 @@ const App = () => {
     <Provider store = {store}>
       <div>
         <Posts></Posts>
-        {/* <Todos></Todos> */}
+        <Todos></Todos>
         {/*<Counter/>
         <User/>
         <Fruits/>*/}

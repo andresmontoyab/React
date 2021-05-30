@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, compose, createStore } from 'redux'
 import rootReducer from './reducers'
 import reduxLogger from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -20,8 +20,15 @@ const confirmDeleteTodo = (store) => (next) => (action) => {
             next(action)
         }
     }
+    next(action)
 }
-const store = createStore(rootReducer, applyMiddleware(reduxLogger, confirmDeleteTodo, thunk))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose
+
+const store = createStore(
+    rootReducer, 
+    composeEnhancers(applyMiddleware(reduxLogger, confirmDeleteTodo, thunk)
+    )
+)
 //store.subscribe(() => console.log(store.getState()))
 //
 store.dispatch({type: 'INCREMENT'})

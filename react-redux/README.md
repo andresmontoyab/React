@@ -25,19 +25,22 @@ Steps to explain Redux
 5. Explan what is an action
 6. Connect with components 
 
-# Redux        
+# Redux       
 
-It is a framework that deal with the state of an application, usually React and Redux works together.
+In order to start with Redux we need to understand one very important concept, the ```state```, the state basically is a place in where we are going to store all the data that we need for our application.
+
+Redux is going to help us to handle the state.
+
+So Redux is a tool that deal with the state of an application, usually React and Redux works together.
   - The state is unique and global in the entire application.
   - The state only get modified with actions.
 
+Redux is based in an architecture call Flux, in order to understand how it works redux we need to see some the very important concepts
 
-Redux is based in an architecture call Flux
-
-1. Dispatcher
-2. Store
-3. Action
-4. View
+- Store
+- Dispatcher
+- Actions
+- Reducer
 
 ## Install
 
@@ -47,7 +50,7 @@ npm install --save redux
 
 ## Store
 
-The information in the store only can be modified with actions.
+The store is where we are going to save all the information that our application needs, so let say that we have an app that render client information, so with redux we saved all the client information in the store. Saving information in the store let us read in every connected component the whole data.
 
 The data flow is strictly uni-directional(There is no doble binding)
 
@@ -55,31 +58,23 @@ Single Source of Thruth: SSOT
 
 ![](https://github.com/andresmontoyab/BasicReactJs/blob/master/resources/redux-flow.PNG) 
 
+### Create Store
+
+The first thing that we need to do is create the store, in order to do we can write the next code.
+
 ```JSX
 import { createStore, compose } from 'redux';
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const initialState = 0;
-function reducers(state = initialState, action) {
-    switch(action.type) {
-        case 'INCREMENT': {
-            return state +1 
-        }
-        case 'DECREMENT': {
-            return state  - 1 
-        }
-        default:
-            return state
-    }
-}
-
-export const store = createStore(reducers, {}, composeEnhancers());
+export const store = createStore();
 ```
 
-The store provide us three usefull functions to use 
+With the above line we are going to have the store ready to use.
+
+### Store Methods
+
+The store provide us three methods to use:
 
 ```jsx
 store.subscribe(() => console.log(store.getState()))
-
 store.dispatch({type: 'INCREMENT'})
 store.dispatch({type: 'INCREMENT'})
 store.dispatch({type: 'DECREMENT'})
@@ -87,9 +82,11 @@ store.dispatch({type: 'DECREMENT'})
 
 - ```subscribe```: Every time that the state change the subscribe function is invoked
 - ```getState```: Retrieves the store current state
-- ```dispatch```: Send an action to the store, this actions + reducer are going to modified the store.
+- ```dispatch```: Send an action to the store, this actions + reducer are going to modified the 
 
-## App with provider
+### Connect App with Store
+
+In order to conenct our main app with the redux store, we need to use the Provider component and wrap our main App with that component
 
 ```JSX
 import { Provider } from 'react-redux';
@@ -103,70 +100,147 @@ const rootComponent= (
 ReactDOM.render(rootComponent, document.getElementById('root'));
 ```
 
-## Create Action
+## Dispatcher
+
+Every single time that we want to change our state in the store, we need to call the method dispatch, this method receives an object that usually is called action and has the properties type and payload.
+
+- ```type```: We are going to put the action that we are doing, example Increment, decrement, delete.
+- ```payload``` : In the payload is going to be all the extra data that we need in order to finish the actions.
 
 ```JSX
-import { FETCH_CUSTOMERS} from './../constants/index';
-import { createAction } from 'redux-actions';
-
-export const fetchCustomers = createAction(FETCH_CUSTOMERS);
-```
-
-### Redux connect
-
-```JSX
-import {connect} from 'react-redux';
-
-// ... Component info
-const mapDispatchToProps = dispatch => (
-    {
-        fetchCustomer: () => dispatch(fetchCustomers())
+store.dispatch({
+    type: 'INCREMENT',
+    payload: {
+        amount_to_increment: 2
     }
-)
-
-export default withRouter(connect(null, mapDispatchToProps)(CustomerContainer));
+})
 ```
 
 ## Reducer
 
-Reducers basically is a function that is going to update the state of the application, usuaylly reducers are pure functions(Is an function that only depends of the input, it does not depent of any information out of the function)
+Reducer is one of the most important components, in the reducer we are going to right the final state after an specific actions happens.
 
-
-In order to create a setup a reducer we must follow some steps.
-
+### Create Reducer
 
 ```JSX
-import { handleActions } from 'redux-actions';
-import { FETCH_CUSTOMERS } from '../constants';
 
-const customers = handleActions({
-    [FETCH_CUSTOMERS]: state => state
-});
+function counter(state = 0, action) {
+    switch(action.type) {
+        case 'INCREMENT': {
+            return state +1 
+        }
+        case 'DECREMENT': {
+            return state  - 1 
+        }
+        default:
+            return state
+    }
+}
+
+export default counter
 ```
 
-Create an index file in where call the previous created reducer
+Let's now connect the two concepts reducer and dispatch, when we dispatch an action the reducer is going to be called and applied the specific behaviour that we defined for that action. So every time that we execute a dispatch the reducer is going to be executed.
+
+But, be very carefull because if you dont add the reducer to the store so the reducer is not going to be called.
+
+In order to add reducers to the store follow the next steps
 
 ```JSX
-import { combineReducers } from 'redux';
-import { customers } from './customers';
+// 1. Create your reducer
+function counter(state = 0, action) {
+    switch(action.type) {
+        case 'INCREMENT': {
+            return state +1 
+        }
+        case 'DECREMENT': {
+            return state  - 1 
+        }
+        default:
+            return state
+    }
+}
 
-export default combineReducers({
-    customers
+// 2. Create combineReducer and add all the reducers that you need
+import { combineReducers } from 'redux'
+const rootReducers combineReducers({
+    counter
 })
+
+// 3. Create the store with the reducers
+const store = createStore(
+    rootReducer)
+)
 ```
 
-Use the combineReducers in our store file
+With the above code every single time that we use the dispatch method, the reducer is going to be executed.
+
+## Connect Components
+
+
 
 ```JSX
-import { createStore, compose } from 'redux';
-import { reducers } from '../reducers/index';
+import React from 'react'
+import { connect } from 'react-redux'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const Counter = ({ name, counter, increment, decrement }) => {
+    return (
+        <div>
+            <button onClick={increment}>+</button>
+            <button onClick={decrement}>-</button>
+            {<h1>{ counter}</h1>}
+            <p>{ name }</p>
+        </div>
+    )
+}
+const mapStateToProps = (state) => {
+    return {
+        name: state.user.name,
+        counter: state.counter
+    }    
+}
 
-export const store = createStore(reducers, {}, composeEnhancers());
+const mapDispatchToProps= (dispatch) => {
+    return {
+        increment: () => dispatch({type: 'INCREMENT'}),
+        decrement: () => dispatch({type: 'DECREMENT'})
+    }
+}
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(Counter)
 ```
 
-## Install Browser dependency
+
+## Redux DevTools
+
+Redux DevTools is a tool that help us to understand how the state change with time, this tool let us see the all the history state of the application, lets start.
+
+### Install Redux DevTools
+
+In order to use redux devtools we need to follow the next steps:
+
+1. Go to Chrome and seach for Redux DevTools
+2. Open the option in Chrome Store.
+3. Click in ```Add to Chrome``` 
+
+After the above steps, we are going to have available a new tag in our development tools called ```Redux```, nevertheless that tag is not going to show us any information
+
+### Enable Console
+
+In order to enable all the information in the console you need to wrapp your reducers with the composeEnhancers 
+
+```JSX
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || compose
+
+const store = createStore(
+    rootReducer, 
+    composeEnhancers(applyMiddleware(reduxLogger, confirmDeleteTodo, thunk)
+    )
+)
+```
 
 In your browser search for redux devtools extensions
 

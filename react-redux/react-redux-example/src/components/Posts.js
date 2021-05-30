@@ -5,12 +5,15 @@ import {fetchPosts} from './../redux/actions/postActions'
 export const Posts = (props) => {
     console.log(props)
     const loadPosts = () => {
-        props.dispatch(fetchPosts)
+        props.dispatch(fetchPosts())
     }
     return (
         <div>
             <h1>Posts</h1>
             <button onClick={loadPosts}>Load Posts</button>
+            {props.posts.posts.map((post) => (
+                <li>{post.title}</li>
+            ))}
         </div>
     )
 }
