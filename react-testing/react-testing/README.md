@@ -3,15 +3,6 @@
 * [Getting Start](#Getting-Start)
 
 
-Steps to explain Redux
-
-1. First define the concepts, Store, Reducer, Actions and Dispatcher
-2. Create a simple reducer
-3. Create a store with one reducer
-4. Create store with multiples reducers
-5. Explan what is an action
-6. Connect with components 
-
 # Testing       
 
 When we are talking about software development there is one main important topic that we need to cover, testing.
@@ -36,4 +27,33 @@ After run the above command we can run our test running the next commands
 ```sh
 npm run test
 ```
+
+
+# Coverage
+
+Run the next command
+
+`npm test -- --coverage --watchAll`
+
+
+# Testing Async code
+
+# Enzyme 
+
+Enzyme help us to emulate the React component creations
+
+# Installing Enzyme
+
+First install enzyme
+
+`npm i -D enzyme`
+
+Second in order to have good setup install, some other dependencies.
+
+`npm install --save-dev @wojtekmaj/enzyme-adapter-react-17`
+
+You need to install the enzyme adapter that match with your react version
+
+
+
 
