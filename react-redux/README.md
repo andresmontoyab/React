@@ -14,16 +14,6 @@
       * [Field Validation](#Field-Validation)
       * [Global Validations](#Global-Validations)
     * [Submitting Form](#Submitting-Form)
-  
-
-Steps to explain Redux
-
-1. First define the concepts, Store, Reducer, Actions and Dispatcher
-2. Create a simple reducer
-3. Create a store with one reducer
-4. Create store with multiples reducers
-5. Explan what is an action
-6. Connect with components 
 
 # Redux       
 
@@ -31,7 +21,7 @@ In order to start with Redux we need to understand one very important concept, t
 
 Redux is going to help us to handle the state.
 
-So Redux is a tool that deal with the state of an application, usually React and Redux works together.
+So Redux is a tool that deal with the state of an application, usually React and Redux work together.
   - The state is unique and global in the entire application.
   - The state only get modified with actions.
 
@@ -86,7 +76,7 @@ store.dispatch({type: 'DECREMENT'})
 
 ### Connect App with Store
 
-In order to conenct our main app with the redux store, we need to use the Provider component and wrap our main App with that component
+In order to connect our main app with the redux store, we need to use the Provider component and wrap our main App with that component
 
 ```JSX
 import { Provider } from 'react-redux';
@@ -118,7 +108,7 @@ store.dispatch({
 
 ## Reducer
 
-Reducer is one of the most important components, in the reducer we are going to right the final state after an specific actions happens.
+Reducer is one of the most important components, in the reducer we are going to write the final state after an specific actions happens.
 
 ### Create Reducer
 
@@ -177,7 +167,7 @@ With the above code every single time that we use the dispatch method, the reduc
 
 ## Connect Components
 
-
+After we had everything in place we can use our store/state in our components applying the next setup. 
 
 ```JSX
 import React from 'react'
@@ -193,6 +183,8 @@ const Counter = ({ name, counter, increment, decrement }) => {
         </div>
     )
 }
+
+// This method is going to map the store properties to the component properties
 const mapStateToProps = (state) => {
     return {
         name: state.user.name,
@@ -212,7 +204,6 @@ export default connect(
     mapDispatchToProps
 )(Counter)
 ```
-
 
 ## Redux DevTools
 

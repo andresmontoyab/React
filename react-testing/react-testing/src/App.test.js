@@ -1,5 +1,5 @@
 import React from 'react'
-import App from './App'
+import App, {HelloComponent} from './App'
 import {configure, shallow, mount, render} from 'enzyme'
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 
@@ -19,7 +19,25 @@ describe('Group example test', () => {
     const wrapper  = shallow(<App></App>)
     expect(wrapper.find('h1').html()).toBe('<h1>Testing Introduction</h1>')
     expect(wrapper.find('h1')).toHaveLength(1)
-    expect(wrapper.html()).toBe('<div><h1>Testing Introduction</h1></div>')
+  })
+
+  test('Selecting html elements', () => {
+    const wrapper  = shallow(<App></App>)
+
+    // find element by css selector
+    console.log(wrapper.find('.container').html())
+
+    // find element by css selector
+    //console.log(wrapper.find('div p').html())
+
+    // You can use almost every css selector in order to retrieve a specific element
+
+    // Also we can select elements in base of the props send to the elements
+    console.log(wrapper.find('[num="3"]').html())
+    console.log(wrapper.find('[type="text"]').html())
+
+    // You can even search the html information using a react component
+    console.log(wrapper.find(HelloComponent).html())
   })
   
 
