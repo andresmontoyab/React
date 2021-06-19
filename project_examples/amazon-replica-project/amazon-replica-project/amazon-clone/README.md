@@ -39,3 +39,17 @@ npm run build
 ```sh
 firebase deploy
 ```
+
+
+# Steps to setup stripe
+
+Install the next dependencies
+
+```sh 
+npm install @stripe/stripe-js
+npm install @stripe/react-stripe-js
+```
+
+After that, we need to create an stripe account.
+
+After creating the account go the `Developer` section and copy the `API keys`
