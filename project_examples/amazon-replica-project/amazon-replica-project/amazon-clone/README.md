@@ -40,6 +40,62 @@ npm run build
 firebase deploy
 ```
 
+## Firebase Cloud Functions
+
+1. firebase init
+2. Choose the option `Functions: Configure and deploy Cloud Functions`
+3. Choose `Javascript`
+4. After that firebase should creates a folder call `function`, in that folder is are going to be our backend side
+
+In order to develop our function/backend service we need to install some dependencies, please be sure that you are inside the function folder.
+
+```sh
+npm i express
+npm i cors
+npm i stripe
+```
+
+### Write your API
+
+One basic example for your cloud function API could be
+
+
+```js
+const functions = require("firebase-functions");
+const express = require("express")
+const cors = require("cors")
+const stripe = require("stripe")('sk_test_51J3pi0IxX3vLdReGa7OByR0oH1oTHfYc7vEhoe1nwILgi4GFbNkaXBZ3xmeC0MKkE0eZfBcBSgloqvVx0xu3I5sk009oM2NsdO')
+
+// Setup API
+
+// - App config
+const app = express();
+
+// - Middlewares
+app.use(cors({ origin: true }));
+app.use(express.json());
+
+// - API routes
+app.get('/', (request, response) => res.status(200).send('Hello world'))
+
+// - Listener
+exports.api = functions.https.onRequest(app)
+```
+
+### Launch your API in local
+
+In order to start you API in local you need to run the next command
+
+```sh
+firebase emulators:start
+```
+
+
+# Deploy cloud firebase function 
+
+```sh
+firebase deploy --only functions
+```
 
 # Steps to setup stripe
 
