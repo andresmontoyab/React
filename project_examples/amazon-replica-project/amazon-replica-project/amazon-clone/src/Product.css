@@ -41,18 +41,3 @@
 .product__price {
     margin-top: 5px;
 }
-
-.payment__details > form {
-    max-width: 40px;
-}
-
-.payment__details > h2 {
-    padding-bottom: 20px;
-}
-
-.payment__details > form > div > button {
-    background-color: #f0c14b;
-    border-radius: 2px;
-    width: 100%;
-
-}
