@@ -1,16 +1,31 @@
 import './App.css';
 import Chat from './Chat';
 import Sidebar from './Sidebar';
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useState } from 'react';
+import Login from './Login';
 
 function App() {
+  const [user, setUser] = useState(null)
   return (
     <div className="app">
+      {!user? (
+        <Login></Login>
+      ): (
       <div className="app__body">
-        <Sidebar />
-        <Chat />
-        
-        {/* adding personal token */}
+        <Router>
+          <Sidebar />
+          <Switch>
+            <Route path="/rooms/:roomId">
+              <Chat />
+            </Route>
+            <Route path="/">
+              <Chat />
+            </Route>
+          </Switch>
+        </Router>
       </div>
+      )}
     </div>
   );
 }
