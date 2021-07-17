@@ -35,3 +35,24 @@ Also you need to do the next steps in your firebase console.
 4. Click `Google`
 5. Toogle to `Enable` and put your email.
 6. Save
+
+## Steps to Deploy in Firebase
+
+```sh
+firebase login
+firebase init
+```
+
+After some options are going to appear please selec the next options
+
+1. Select ```Hosting```
+2. Select ```Using existing projects```
+3. Select The project that you created in firebase
+
+After that type the next command
+
+```sh
+build ## After that type y and N
+npm run build
+firebase deploy
+```
