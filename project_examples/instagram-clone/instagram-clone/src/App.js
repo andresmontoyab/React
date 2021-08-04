@@ -181,8 +181,10 @@ const signIn = (event) => {
       {posts.map(({id, post}) => (
         <Post
           key={id}
+          postId = {id}
           imageUrl={post.imageUrl}
           username={post.username}
+          user={user}
           caption={post.caption}
         />
       ))}
