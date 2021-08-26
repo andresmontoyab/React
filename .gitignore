@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+react-native/first-react-nativve-expo/node_modules/*
+react-native/first-react-nativve-expo/node_modules/core-js/*
+*node_modules/*
